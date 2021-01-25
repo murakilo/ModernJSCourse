@@ -2,10 +2,10 @@
 // Instructor: Brad Traversy
 // https://www.udemy.com/course/modern-javascript-from-the-beginning/
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 // Section 2: JavaScript Language Fundamentals
 //  6. Using the console
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 // // Log to console
 // console.log('hello world'); // log string
@@ -31,9 +31,9 @@
 // //alert('hello'); // makes the browser alert the user
 
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 // 7. Variables - var, let, & const
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 // // var, let, const
 // // let and const now fully supported by ES6. big advantage at block level scope
@@ -91,9 +91,9 @@
 // Makes it obvious that this value will not be reassigned. Makes code more robust, secure, readable
 
 
-// // ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 // // 8. Data Types in JavaScript
-// // ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 //
 // // Two types of data types: primitive and reference
 // // Primitive - data stored directly in location that variable accesses. Stored on THE STACK
@@ -144,9 +144,9 @@
 // console.log('date type = ' + typeof today);
 
 
-// ~~~~~~~~~~~~~~~~~~
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 // 9. Type Conversion
-// ~~~~~~~~~~~~~~~~~~
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 // let val;
 // // number to string
@@ -246,40 +246,171 @@
 // console.log(Number(val1) + String(val2)) // converts val1 back to a number, but due to val2 now being a string it is still treated as string concatenation. output: '56'
 
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 // 10. Numbers & the Math Object
-// ~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
-const num1 = 100;
-const num2 = 50;
-let val;
+// const num1 = 100;
+// const num2 = 50;
+// let val;
+// 
+// // simple math with numbers
+// val = num1 + num2; // 150
+// val = num1 * num2; // 5000
+// val = num1 - num2; // 50
+// val = num1 / num2; // 2
+// val = num1 % num2; // 0 (remainder)
+// 
+// // Math Object
+// val = Math.PI; // 3.141593
+// val = Math.E; // 2.718282
+// val = Math.round(2.8); // 3
+// val = Math.round(2.4); // 2
+// val = Math.ceil(2.4); // 3
+// val = Math.floor(2.8); // 2
+// val = Math.sqrt(64); // 8
+// val = Math.abs(-24.3); // 24.3
+// val = Math.pow(8, 3); // 512
+// val = Math.min(2,66,43,66,-8) // -8
+// val = Math.max(2,66,43,66,-8) // 66
+// val = Math.max(); // infinity
+// val = Math.random(); // random decimal (between 0 and 1)
+// val = Math.random() * 20 + 2; // random decimal between 2 and 20 (non inclusive)
+// val = Math.floor(Math.random() * 20 + 1); // random whole between 1 and 20 (non inclusive)
+// 
+// 
+// console.log(val);
 
-// simple math with numbers
-val = num1 + num2; // 150
-val = num1 * num2; // 5000
-val = num1 - num2; // 50
-val = num1 / num2; // 2
-val = num1 % num2; // 0 (remainder)
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 11. String methods & concatenation
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
-// Math Object
-val = Math.PI; // 3.141593
-val = Math.E; // 2.718282
-val = Math.round(2.8); // 3
-val = Math.round(2.4); // 2
-val = Math.ceil(2.4); // 3
-val = Math.floor(2.8); // 2
-val = Math.sqrt(64); // 8
-val = Math.abs(-24.3); // 24.3
-val = Math.pow(8, 3); // 512
-val = Math.min(2,66,43,66,-8) // -8
-val = Math.max(2,66,43,66,-8) // 66
-val = Math.max(); // infinity
-val = Math.random(); // random decimal (between 0 and 1)
-val = Math.random() * 20 + 2; // random decimal between 2 and 20 (non inclusive)
-val = Math.floor(Math.random() * 20 + 1); // random whole between 1 and 20 (non inclusive)
+// const firstName = 'William';
+// const lastName = 'Williams';
+// const age = 27;
+// const str = 'Hello there my name is Josh';
+// const tags = 'web design,programming,testTag';
+// let val;
+// 
+// // Concatenation
+// val = firstName + lastName; // WilliamWilliams
+// val = firstName + ' ' + lastName; // William Williams
+// // Append
+// val = 'josh ';
+// val += 'cullen';
+// val = 'Hello, my name is ' + firstName + ' and I am ' + age;
+// 
+// // Escaping
+// //val = 'that's awesome. I can't wait.'; // fails
+// val = "That's awesome. I can't wait.";
+// val = 'That\'s awesome. I can\'t wait.';
+// 
+// // length
+// val = firstName.length; // 7
+// 
+// // Concat
+// val = firstName.concat(' ', lastName); // William Williams
+// 
+// // change case
+// val = firstName.toUpperCase();
+// val = lastName.toLowerCase();
+// // index
+// val = firstName[2]; // l
+// val = firstName.indexOf('a'); // 5 - gives index of first character found
+// val = firstName.lastIndexOf('l'); // 3 - returns index of first character returned beginning from end of array (second l)
+// // charAt()
+// val = firstName.charAt('1'); // i
+// // get last char
+// val = firstName.charAt(firstName.length - 1); // m - last char in string
+// // substring()
+// val = firstName.substring(0,4); // Will
+// // slice()
+// val = firstName.slice(0,4); // Will - same as substring except for arrays
+// val = firstName.slice(-3); // iam - last 3 chars
+// // split()
+// val = str.split(' '); // returns 6 value array, each index containing a word from the string
+// val = tags.split(',') // returns 3 value array split by comma
+// // replace()
+// val = str.replace('Josh', 'Colin');
+// // includes()
+// val = str.includes('Hello'); // true - case sensitive
+// 
+// console.log(val);
+
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 12. Template literals
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// part of ES6 - compatible with all modern browsers. won't work with old versions of IE for example
+
+const name = 'Josh';
+const age = 27;
+const job = 'Web Developer';
+const city = 'LA';
+let html;
+
+// without template literals (ES5) - html string
+html = '<ul><li>Name: ' + name + '</li><li>Age: ' + age + '</li><li>Job: ' + job + '</li><li>City: ' + city + '</li></ul>';
+html = '<ul>' + 
+       '<li>Name: ' + name + '</li>' +
+       '<li>Age: ' + age + '</li>' +
+       '<li>Job: ' + job + '</li>' +
+       '<li>City: ' + city + '</li>' +
+       '</ul>';
+
+// with template literals
+function hello() {
+    return 'hello';
+}
+html = `
+    <ul>
+        <li>Name: ${name}</li>
+        <li>Age: ${age}</li>
+        <li>Job: ${job}</li>
+        <li>City: ${city}</li>
+        <li>${2 + 2}</li>
+        <li>${hello()}</li>
+        <li>${age > 30 ? 'Over 30' : 'Under 30'}</li>
+    </ul>`
+document.body.innerHTML = html; // found bug with this. 'Uncaught TypeError: Cannot set property 'innerHTML' of null' 
+                                // The script tag must be in or after the body tag in the html otherwise the javascript is
+                                // trying to change the innerHTML of a body tag that doesn't exist yet.
+
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 13. Arrays and Methods
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 
-console.log(val);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
