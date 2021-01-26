@@ -342,43 +342,92 @@
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 // part of ES6 - compatible with all modern browsers. won't work with old versions of IE for example
 
-const name = 'Josh';
-const age = 27;
-const job = 'Web Developer';
-const city = 'LA';
-let html;
-
-// without template literals (ES5) - html string
-html = '<ul><li>Name: ' + name + '</li><li>Age: ' + age + '</li><li>Job: ' + job + '</li><li>City: ' + city + '</li></ul>';
-html = '<ul>' + 
-       '<li>Name: ' + name + '</li>' +
-       '<li>Age: ' + age + '</li>' +
-       '<li>Job: ' + job + '</li>' +
-       '<li>City: ' + city + '</li>' +
-       '</ul>';
-
-// with template literals
-function hello() {
-    return 'hello';
-}
-html = `
-    <ul>
-        <li>Name: ${name}</li>
-        <li>Age: ${age}</li>
-        <li>Job: ${job}</li>
-        <li>City: ${city}</li>
-        <li>${2 + 2}</li>
-        <li>${hello()}</li>
-        <li>${age > 30 ? 'Over 30' : 'Under 30'}</li>
-    </ul>`
-document.body.innerHTML = html; // found bug with this. 'Uncaught TypeError: Cannot set property 'innerHTML' of null' 
-                                // The script tag must be in or after the body tag in the html otherwise the javascript is
-                                // trying to change the innerHTML of a body tag that doesn't exist yet.
+// const name = 'Josh';
+// const age = 27;
+// const job = 'Web Developer';
+// const city = 'LA';
+// let html;
+// 
+// // without template literals (ES5) - html string
+// html = '<ul><li>Name: ' + name + '</li><li>Age: ' + age + '</li><li>Job: ' + job + '</li><li>City: ' + city + '</li></ul>';
+// html = '<ul>' + 
+//        '<li>Name: ' + name + '</li>' +
+//        '<li>Age: ' + age + '</li>' +
+//        '<li>Job: ' + job + '</li>' +
+//        '<li>City: ' + city + '</li>' +
+//        '</ul>';
+// 
+// // with template literals
+// function hello() {
+//     return 'hello';
+// }
+// html = `
+//     <ul>
+//         <li>Name: ${name}</li>
+//         <li>Age: ${age}</li>
+//         <li>Job: ${job}</li>
+//         <li>City: ${city}</li>
+//         <li>${2 + 2}</li>
+//         <li>${hello()}</li>
+//         <li>${age > 30 ? 'Over 30' : 'Under 30'}</li>
+//     </ul>`
+// document.body.innerHTML = html; // found bug with this. 'Uncaught TypeError: Cannot set property 'innerHTML' of null' 
+//                                 // The script tag must be in or after the body tag in the html otherwise the javascript is
+//                                 // trying to change the innerHTML of a body tag that doesn't exist yet.
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 // 13. Arrays and Methods
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
+const numbers = [1,2,3,4,5];
+const numbers2 = new Array(22,45,33,2,15,3);
+const fruit = ['apple', 'Banana', 'orange', 'lemon'];
+const mixed = [22,'hello',true,undefined,null,{a:1, b:1}, new Date()];
+
+let val;
+
+val = numbers.length; // 5
+val = Array.isArray(mixed); // true
+val = Array.isArray('hello'); // false
+val = numbers[2]; // 3
+// arrays are not immutable. we can modify them.
+numbers[2] = 100; // replaces 3 with 100
+val = numbers.indexOf(4);
+
+// mutating arrays
+numbers.push(44); // adds 44 to end of numbers array
+numbers.unshift(17); // adds 17 to beginning of numbers array
+numbers.pop(); // removes the last value from numbers array
+numbers.shift(); // removes the first value from numbers array
+numbers.splice(1,3); // removes values at indexes 1-3 (inclusive)
+numbers.reverse(); // reverses array
+
+// concatenate arrays
+val = numbers.concat(numbers2);
+
+// syntax: array.sort([compareFunction]);
+val = fruit.sort(); // orders string array alphabetically (A-Za-z)
+val = numbers2.sort(); // no argument given, so sort converts the numbers to strings and arranges them in UTF-16 order (i.e. 11, 3, 403, 43, 97)
+val = numbers2.sort(function(x, y) { // sorts numbers in ascending numeric order
+    return x - y;
+});
+val = numbers2.sort(function(x, y) { // sorts numbers in descending numeric order
+    return y - x;
+});
+// about the above compareFunction
+// if compareFunction(a,b) returns less than zero, sort a to an index lower than b (i.e. a comes first)
+// if it returns zero, leave a and b unchanged with respect to eachother - the EMCAScript standard only started guaranteeing this behaviour in 2019
+// if it returns greater than zero, sort b lower than a (i.e. b comes first)
+// it must always return the same value when given a specific pair of elements. if inconsistent results are returned, then the sort order is undefined. One example of this is the use of math.random() within an array.
+
+// find
+function under50(num) {
+    return num > 50;
+}
+val = numbers.find(under50); // returns the first number in the array that meets the function. undefined if nothing meets it.
+
+console.log(numbers);
+console.log(val);
 
 
 
