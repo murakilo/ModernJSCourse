@@ -379,55 +379,132 @@
 // 13. Arrays and Methods
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
-const numbers = [1,2,3,4,5];
-const numbers2 = new Array(22,45,33,2,15,3);
-const fruit = ['apple', 'Banana', 'orange', 'lemon'];
-const mixed = [22,'hello',true,undefined,null,{a:1, b:1}, new Date()];
+// const numbers = [1,2,3,4,5];
+// const numbers2 = new Array(22,45,33,2,15,3);
+// const fruit = ['apple', 'Banana', 'orange', 'lemon'];
+// const mixed = [22,'hello',true,undefined,null,{a:1, b:1}, new Date()];
+// 
+// let val;
+// 
+// val = numbers.length; // 5
+// val = Array.isArray(mixed); // true
+// val = Array.isArray('hello'); // false
+// val = numbers[2]; // 3
+// // arrays are not immutable. we can modify them.
+// numbers[2] = 100; // replaces 3 with 100
+// val = numbers.indexOf(4);
+// 
+// // mutating arrays
+// numbers.push(44); // adds 44 to end of numbers array
+// numbers.unshift(17); // adds 17 to beginning of numbers array
+// numbers.pop(); // removes the last value from numbers array
+// numbers.shift(); // removes the first value from numbers array
+// numbers.splice(1,3); // removes values at indexes 1-3 (inclusive)
+// numbers.reverse(); // reverses array
+// 
+// // concatenate arrays
+// val = numbers.concat(numbers2);
+// 
+// // syntax: array.sort([compareFunction]);
+// val = fruit.sort(); // orders string array alphabetically (A-Za-z)
+// val = numbers2.sort(); // no argument given, so sort converts the numbers to strings and arranges them in UTF-16 order (i.e. 11, 3, 403, 43, 97)
+// val = numbers2.sort(function(x, y) { // sorts numbers in ascending numeric order
+//     return x - y;
+// });
+// val = numbers2.sort(function(x, y) { // sorts numbers in descending numeric order
+//     return y - x;
+// });
+// // about the above compareFunction
+// // if compareFunction(a,b) returns less than zero, sort a to an index lower than b (i.e. a comes first)
+// // if it returns zero, leave a and b unchanged with respect to eachother - the EMCAScript standard only started guaranteeing this behaviour in 2019
+// // if it returns greater than zero, sort b lower than a (i.e. b comes first)
+// // it must always return the same value when given a specific pair of elements. if inconsistent results are returned, then the sort order is undefined. One example of this is the use of math.random() within an array.
+// 
+// // find
+// function under50(num) {
+//     return num > 50;
+// }
+// val = numbers.find(under50); // returns the first number in the array that meets the function. undefined if nothing meets it.
+// 
+// console.log(numbers);
+// console.log(val);
+
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 14. Object Literals
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+// const person = {
+//     firstName: 'josh',
+//     lastName: 'cullen',
+//     age: 27,
+//     email: 'josh@yahoo.com',
+//     hobbies: ['detecting', 'buttons'],
+//     address: {
+//         city: 'Miami',
+//         state: 'FL'
+//     },
+//     getBirthYear: function() {
+//         return 2020 - this.age;
+//     }
+// };
+// let val;
+// val = person.firstName; // preferred dot notation
+// val = person['lastName']; 
+// val = person.age;
+// val = person.email;
+// val = person.hobbies[1];
+// val = person.address.state;
+// val = person['address']['city'];
+// val = person.getBirthYear();
+// 
+// const people = [
+//     { name: 'josh', age: 27 },
+//     { name: 'mollie', age: 31 }
+// ];
+// 
+// for (i = 0; i < people.length; i++) {
+//     console.log(people[i].name);
+// }
+// console.log(val);
+
+// ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 15. Dates & Times
+// ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 let val;
+const today = new Date(); // giving no argument defaults to current time
+let birthday = new Date('11/13/1993 04:30:00 GMT');
+birthday = new Date(1993, 10, 13, 04, 30, 22); // y,m,d,h,min,s,ms
+birthday = new Date('13 November 1993 UTC');
 
-val = numbers.length; // 5
-val = Array.isArray(mixed); // true
-val = Array.isArray('hello'); // false
-val = numbers[2]; // 3
-// arrays are not immutable. we can modify them.
-numbers[2] = 100; // replaces 3 with 100
-val = numbers.indexOf(4);
+val = today;
+val = birthday;
+val = today.getMonth(); // month is zero based for some fkin reason (jan = 0)
+val = today.getDate();
+val = today.getDay(); // returns 5 (numerical day. 5 = friday, 1 = sunday
+val = today.getFullYear(); // returns year (2021)
+val = today.getHours(); // returns 24h time hour
+val = today.getMinutes(); // returns minute number (time is 18:48 so it returns 48)
+val = today.getSeconds();
+val = today.getMilliseconds();
+val = today.getTime(); // returns epoch time - milliseconds since jan 1st 1970 00:00:00 UTC
 
-// mutating arrays
-numbers.push(44); // adds 44 to end of numbers array
-numbers.unshift(17); // adds 17 to beginning of numbers array
-numbers.pop(); // removes the last value from numbers array
-numbers.shift(); // removes the first value from numbers array
-numbers.splice(1,3); // removes values at indexes 1-3 (inclusive)
-numbers.reverse(); // reverses array
+val = birthday;
+birthday.setMonth(6); // sets the month of the today Date object to July
+birthday.setDate(12); // sets day of month to 12th
+birthday.setFullYear(1883); // sets year to 1883 (the year when the USA started using standardized timezones)
+birthday.setHours(3); // sets hour to 3am
+birthday.setMinutes(22); // sets minute to 22
+birthday.setSeconds(59);
+birthday.setMilliseconds(69);
 
-// concatenate arrays
-val = numbers.concat(numbers2);
 
-// syntax: array.sort([compareFunction]);
-val = fruit.sort(); // orders string array alphabetically (A-Za-z)
-val = numbers2.sort(); // no argument given, so sort converts the numbers to strings and arranges them in UTF-16 order (i.e. 11, 3, 403, 43, 97)
-val = numbers2.sort(function(x, y) { // sorts numbers in ascending numeric order
-    return x - y;
-});
-val = numbers2.sort(function(x, y) { // sorts numbers in descending numeric order
-    return y - x;
-});
-// about the above compareFunction
-// if compareFunction(a,b) returns less than zero, sort a to an index lower than b (i.e. a comes first)
-// if it returns zero, leave a and b unchanged with respect to eachother - the EMCAScript standard only started guaranteeing this behaviour in 2019
-// if it returns greater than zero, sort b lower than a (i.e. b comes first)
-// it must always return the same value when given a specific pair of elements. if inconsistent results are returned, then the sort order is undefined. One example of this is the use of math.random() within an array.
-
-// find
-function under50(num) {
-    return num > 50;
-}
-val = numbers.find(under50); // returns the first number in the array that meets the function. undefined if nothing meets it.
-
-console.log(numbers);
+console.log(typeof val);
 console.log(val);
+
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 16. If Statements & Comparison Operators
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 
 
