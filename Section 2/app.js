@@ -526,7 +526,7 @@
 //     console.log('id_num is loosely equal to 100! (not strict)');
 // else
 //     console.log('id_num is not equal to 100! (not strict)');
-// // outputs correct, despite being different datatypes. use === for absolute comparison (see below)
+// // outputs correct, despite being different datatypes.
 // 
 // // most times you want to test the value AND the type. use ===.
 // if (id_num === 100)
@@ -541,7 +541,8 @@
 //     console.log('id_num is equal to 100! (strict)');
 // // returns correct. '100' (string) is not equal to 100 (number)
 // 
-// // to test if a variable is undefined use the below. works for both declared and undeclared variables.
+// // to test if a variable is undefined use the below. 
+// // works for both declared and undeclared variables.
 // let undefined_var;
 // if (typeof undefined_var === 'undefined')
 //     console.log('undefined_var is undefined!');
@@ -571,20 +572,31 @@ const age = 65;
 const id = 100;
 
 // AND &&
-if ( age >= 0 && age < 13 )
-    console.log(`${name} is a child`);
-else if ( age >= 13 && age < 19 )
-    console.log(`${name} is a teenager`);
-else
-    console.log(`${name} is an adult`);
+if (age >= 0 && age < 13) {
+  console.log(`${name} is a child`);
+} else if (age >= 13 && age < 19) {
+  console.log(`${name} is a teenager`);
+} else {
+  console.log(`${name} is an adult`);
+}
 // OR ||
-if ( age < 16 || age > 65 )
-    console.log(`${name} cannot run in the race`);
-else
-    console.log(`${name} is allowed to run in the race`);
+if (age < 16 || age > 65) {
+  console.log(`${name} cannot run in the race`);
+} else {
+  console.log(`${name} is allowed to run in the race`);
+}
 
 // Ternary operator
 console.log(id === 100 ? 'ID IS 100' : 'ID IS NOT 100');
+
+// STYLE
+// can do if/else statement all on two lines. acceptable if short.
+if (false) console.log(`Hello ${name}`);
+else console.log(`Goodbye ${name}`);
+// can also do if/else this way. 
+// do not do this, easy to make error with new lines.
+if (true)
+  console.log('pls don\'t do this');
 
 
 
