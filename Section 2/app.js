@@ -467,50 +467,124 @@
 // }
 // console.log(val);
 
-// ~ ~ ~ ~ ~ ~ ~ ~ ~
-// 15. Dates & Times
-// ~ ~ ~ ~ ~ ~ ~ ~ ~
-
-let val;
-const today = new Date(); // giving no argument defaults to current time
-let birthday = new Date('11/13/1993 04:30:00 GMT');
-birthday = new Date(1993, 10, 13, 04, 30, 22); // y,m,d,h,min,s,ms
-birthday = new Date('13 November 1993 UTC');
-
-val = today;
-val = birthday;
-val = today.getMonth(); // month is zero based for some fkin reason (jan = 0)
-val = today.getDate();
-val = today.getDay(); // returns 5 (numerical day. 5 = friday, 1 = sunday
-val = today.getFullYear(); // returns year (2021)
-val = today.getHours(); // returns 24h time hour
-val = today.getMinutes(); // returns minute number (time is 18:48 so it returns 48)
-val = today.getSeconds();
-val = today.getMilliseconds();
-val = today.getTime(); // returns epoch time - milliseconds since jan 1st 1970 00:00:00 UTC
-
-val = birthday;
-birthday.setMonth(6); // sets the month of the today Date object to July
-birthday.setDate(12); // sets day of month to 12th
-birthday.setFullYear(1883); // sets year to 1883 (the year when the USA started using standardized timezones)
-birthday.setHours(3); // sets hour to 3am
-birthday.setMinutes(22); // sets minute to 22
-birthday.setSeconds(59);
-birthday.setMilliseconds(69);
-
-
-console.log(typeof val);
-console.log(val);
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~
+// // 15. Dates & Times
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 
+// let val;
+// const today = new Date(); // giving no argument defaults to current time
+// let birthday = new Date('11/13/1993 04:30:00 GMT');
+// birthday = new Date(1993, 10, 13, 04, 30, 22); // y,m,d,h,min,s,ms
+// birthday = new Date('13 November 1993 UTC');
+// 
+// val = today;
+// val = birthday;
+// val = today.getMonth(); // month is zero based for some fkin reason (jan = 0)
+// val = today.getDate();
+// val = today.getDay(); // returns 5 (numerical day. 5 = friday, 1 = sunday
+// val = today.getFullYear(); // returns year (2021)
+// val = today.getHours(); // returns 24h time hour
+// val = today.getMinutes(); // returns minute number (time is 18:48 so it returns 48)
+// val = today.getSeconds();
+// val = today.getMilliseconds();
+// val = today.getTime(); // returns epoch time - milliseconds since jan 1st 1970 00:00:00 UTC
+// 
+// val = birthday;
+// birthday.setMonth(6); // sets the month of the today Date object to July
+// birthday.setDate(12); // sets day of month to 12th
+// birthday.setFullYear(1883); // sets year to 1883 (the year when the USA started using standardized timezones)
+// birthday.setHours(3); // sets hour to 3am
+// birthday.setMinutes(22); // sets minute to 22
+// birthday.setSeconds(59);
+// birthday.setMilliseconds(69);
+// 
+// 
+// console.log(typeof val);
+// console.log(val);
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 // 16. If Statements & Comparison Operators
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
+// const id = 100;
+// const id_num = 100;
+// const id_string = '100';
+// 
+// // Equal to
+// if (id_num == 100)
+//     console.log('id_num is loosely equal to 100! (not strict)');
+// else
+//     console.log('id_num is not equal to 100! (not strict)');
+// 
+// // Not equal to
+// if (id_num != 100)
+//     console.log('id_num is not equal to 100! (not strict)');
+// else
+//     console.log('id_num is equal to 100! (not strict)');
+// 
+// if (id_string == 100) // here the string '100' is considered equal to the number 100
+//     console.log('id_num is loosely equal to 100! (not strict)');
+// else
+//     console.log('id_num is not equal to 100! (not strict)');
+// // outputs correct, despite being different datatypes. use === for absolute comparison (see below)
+// 
+// // most times you want to test the value AND the type. use ===.
+// if (id_num === 100)
+//     console.log('id_num is equal to 100! (strict)');
+// else
+//     console.log('id_num is not equal to 100! (strict)');
+// // outputs incorrect as '100' (string) is not equal to 100 (number)
+// 
+// if (id_string !== 100)
+//     console.log('id_num is not equal to 100! (strict)');
+// else
+//     console.log('id_num is equal to 100! (strict)');
+// // returns correct. '100' (string) is not equal to 100 (number)
+// 
+// // to test if a variable is undefined use the below. works for both declared and undeclared variables.
+// let undefined_var;
+// if (typeof undefined_var === 'undefined')
+//     console.log('undefined_var is undefined!');
+// else
+//     console.log(`undefined_var is not undefined!`);
+// 
+// // greater or less than
+// if (id >= 200)
+//     console.log('id is greater than 200');
+// else
+//     console.log('id is not greater than 200');
 
+// // else if
+// const colour = 'yellow';
+// if (colour === 'red')
+//     console.log('colour is red');
+// else if (colour === 'blue')
+//     console.log('colour is blue');
+// else if (colour === 'orange')
+//     console.log('colour is orange');
+// else
+//     console.log('colour is not red, blue, or orange');
 
+// Logical operators
+const name = 'Josh';
+const age = 65;
+const id = 100;
 
+// AND &&
+if ( age >= 0 && age < 13 )
+    console.log(`${name} is a child`);
+else if ( age >= 13 && age < 19 )
+    console.log(`${name} is a teenager`);
+else
+    console.log(`${name} is an adult`);
+// OR ||
+if ( age < 16 || age > 65 )
+    console.log(`${name} cannot run in the race`);
+else
+    console.log(`${name} is allowed to run in the race`);
 
-
+// Ternary operator
+console.log(id === 100 ? 'ID IS 100' : 'ID IS NOT 100');
 
 
 
