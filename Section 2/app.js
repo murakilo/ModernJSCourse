@@ -566,39 +566,91 @@
 // else
 //     console.log('colour is not red, blue, or orange');
 
-// Logical operators
-const name = 'Josh';
-const age = 65;
-const id = 100;
+// // Logical operators
+// const name = 'Josh';
+// const age = 65;
+// const id = 100;
+// 
+// // AND &&
+// if (age >= 0 && age < 13) {
+//   console.log(`${name} is a child`);
+// } else if (age >= 13 && age < 19) {
+//   console.log(`${name} is a teenager`);
+// } else {
+//   console.log(`${name} is an adult`);
+// }
+// // OR ||
+// if (age < 16 || age > 65) {
+//   console.log(`${name} cannot run in the race`);
+// } else {
+//   console.log(`${name} is allowed to run in the race`);
+// }
+// 
+// // Ternary operator
+// console.log(id === 100 ? 'ID IS 100' : 'ID IS NOT 100');
+// 
+// // STYLE
+// // can do if/else statement all on two lines. acceptable if short.
+// if (false) console.log(`Hello ${name}`);
+// else console.log(`Goodbye ${name}`);
+// // can also do if/else this way. 
+// // do not do this, easy to make error with new lines.
+// if (true)
+//   console.log('pls don\'t do this');
 
-// AND &&
-if (age >= 0 && age < 13) {
-  console.log(`${name} is a child`);
-} else if (age >= 13 && age < 19) {
-  console.log(`${name} is a teenager`);
-} else {
-  console.log(`${name} is an adult`);
+
+// ~ ~ ~ ~ ~ ~ ~
+// 17. Switches
+// ~ ~ ~ ~ ~ ~ ~
+
+const colour = 'green';
+
+// use a switch when you have a lot of different cases.
+switch(colour) {
+  case 'red':
+    console.log('colour is red');
+    break;
+  case 'blue':
+    console.log('colour is blue');
+    break;
+  default:
+    console.log('colour is not red or blue');
+    break;
 }
-// OR ||
-if (age < 16 || age > 65) {
-  console.log(`${name} cannot run in the race`);
-} else {
-  console.log(`${name} is allowed to run in the race`);
+
+// blank line between cases is optional 
+// https://google.github.io/styleguide/jsguide.html
+let day;
+switch(new Date().getDay()) {
+  case 0:
+    day = 'Sunday';
+    break;
+    
+  case 1:
+    day = 'Monday';
+    break;
+    
+  case 2:
+    day = 'Tuesday';
+    break;
+    
+  case 3:
+    day = 'Wednesday';
+    break;
+    
+  case 4:
+    day = 'Thursday';
+    break;
+    
+  case 5:
+    day = 'Friday';
+    break;
+    
+  case 6:
+    day = 'Saturday';
+    break;
 }
-
-// Ternary operator
-console.log(id === 100 ? 'ID IS 100' : 'ID IS NOT 100');
-
-// STYLE
-// can do if/else statement all on two lines. acceptable if short.
-if (false) console.log(`Hello ${name}`);
-else console.log(`Goodbye ${name}`);
-// can also do if/else this way. 
-// do not do this, easy to make error with new lines.
-if (true)
-  console.log('pls don\'t do this');
-
-
+console.log(`Today is ${day}`);
 
 
 
