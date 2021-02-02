@@ -599,62 +599,174 @@
 //   console.log('pls don\'t do this');
 
 
-// ~ ~ ~ ~ ~ ~ ~
-// 17. Switches
-// ~ ~ ~ ~ ~ ~ ~
+// // ~ ~ ~ ~ ~ ~ ~
+// // 17. Switches
+// // ~ ~ ~ ~ ~ ~ ~
+// 
+// const colour = 'green';
+// 
+// // use a switch when you have a lot of different cases.
+// switch(colour) {
+//   case 'red':
+//     console.log('colour is red');
+//     break;
+//   case 'blue':
+//     console.log('colour is blue');
+//     break;
+//   default:
+//     console.log('colour is not red or blue');
+//     break;
+// }
+// 
+// // blank line between cases is optional 
+// // https://google.github.io/styleguide/jsguide.html
+// let day;
+// switch(new Date().getDay()) {
+//   case 0:
+//     day = 'Sunday';
+//     break;
+// 
+//   case 1:
+//     day = 'Monday';
+//     break;
+// 
+//   case 2:
+//     day = 'Tuesday';
+//     break;
+// 
+//   case 3:
+//     day = 'Wednesday';
+//     break;
+// 
+//   case 4:
+//     day = 'Thursday';
+//     break;
+// 
+//   case 5:
+//     day = 'Friday';
+//     break;
+// 
+//   case 6:
+//     day = 'Saturday';
+//     break;
+// }
+// console.log(`Today is ${day}`);
 
-const colour = 'green';
+// ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬
+// 18. Function Declarations & Expressions
+// ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬
 
-// use a switch when you have a lot of different cases.
-switch(colour) {
-  case 'red':
-    console.log('colour is red');
-    break;
-  case 'blue':
-    console.log('colour is blue');
-    break;
-  default:
-    console.log('colour is not red or blue');
-    break;
+// // function declarations
+// function greet(firstName = 'john', lastName = 'doe') {
+//   //console.log('hello');
+//   // pre ES6 defaults would be defined like this:
+//   // if(firstName === undefined){firstName='john';}
+//   // if(firstName === undefined){lastName='doe';}
+//   return 'hello ' + firstName + ' ' + lastName;
+// }
+// console.log(greet('josh', 'cullen'));
+// 
+// // function expressions - helpful with hoisting, closures (advanced)
+// const square = function(x = 3) { // usually anonymous but can be named
+//   return x*x;
+// };
+// console.log(square());
+// 
+// // immediately invokable function expressions (IIFEs)
+// (function() {
+//   console.log('IIFE ran...');
+// })();
+// (function(name) {
+//   console.log('hello ' + name);
+// })('steve');
+// 
+// // property methods
+// // when a function is put inside an object it's called a method
+// const todo = {
+//   add: function() {
+//     console.log('add todo');
+//   },
+//   edit: function(id) {
+//     console.log(`edit todo: ${id}`);
+//   }
+// };
+// 
+// todo.delete = function() {
+//   console.log('delete todo...');
+// };
+// 
+// todo.add();
+// todo.edit(22);
+// todo.delete();
+
+// ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬
+// 19. General loops
+// ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬
+
+// for loop
+for (let i = 0; i < 10; i++) {
+  if (i === 2) {
+    console.log('2 is my fave');
+    continue; // exits the current iteration but continues the loop
+  }
+  if (i === 5) {
+    console.log('stop loop');
+    break; // exits the loop entirely
+  }
+  console.log('Number ' + i);
 }
 
-// blank line between cases is optional 
-// https://google.github.io/styleguide/jsguide.html
-let day;
-switch(new Date().getDay()) {
-  case 0:
-    day = 'Sunday';
-    break;
-    
-  case 1:
-    day = 'Monday';
-    break;
-    
-  case 2:
-    day = 'Tuesday';
-    break;
-    
-  case 3:
-    day = 'Wednesday';
-    break;
-    
-  case 4:
-    day = 'Thursday';
-    break;
-    
-  case 5:
-    day = 'Friday';
-    break;
-    
-  case 6:
-    day = 'Saturday';
-    break;
+// while loop
+let i = 0;
+while (i < 10) {
+  console.log('Number ' + i);
+  i++;
 }
-console.log(`Today is ${day}`);
 
+// do loop - always iterates at least once regardless of while clause
+i = 1000; // will run once despite being > 10
+do {
+  console.log('Number ' + i);
+  i++;
+}
+while (i < 10);
+// generally, use a for loop when you know how many iterations you need to
+// loop through, and use a while/do loop for when you don't.
 
+// array for loop
+const cars = ['mercedes', 'volkswagen', 'honda', 'toyota'];
+for (let i = 0; i < cars.length; i++) {
+  console.log(cars[i]);
+}
 
+// foreach - executes provided function on each array element
+cars.forEach(function(car, index, array) {
+  console.log(`${index} : ${car}`);
+  console.log(array);
+});
 
+// map - creates a new array with the results of calling a provided function on
+// every element in the calling array
+const users = [
+  {id: 1, name: 'john'},
+  {id: 2, name: 'josh'},
+  {id: 3, name: 'colin'}
+];
+const ids = users.map(function(user) {
+  return user.id;
+});
+console.log(ids);
+
+// for in loop - used for looping through objects
+const user = {
+  firstName: 'josh',
+  lastName: 'cullen',
+  age: 27
+};
+for (let x in user) { // each element in object user
+  //console.log(x); // logs the key (firstName, lastName, age)
+  console.log(`${x} : ${user[x]}`); // logs key and value
+}
 
 
 
