@@ -699,74 +699,139 @@
 // todo.edit(22);
 // todo.delete();
 
-// ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬
-// 19. General loops
-// ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬
+// // ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬
+// // 19. General loops
+// // ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬
+// 
+// // for loop
+// for (let i = 0; i < 10; i++) {
+//   if (i === 2) {
+//     console.log('2 is my fave');
+//     continue; // exits the current iteration but continues the loop
+//   }
+//   if (i === 5) {
+//     console.log('stop loop');
+//     break; // exits the loop entirely
+//   }
+//   console.log('Number ' + i);
+// }
+// 
+// // while loop
+// let i = 0;
+// while (i < 10) {
+//   console.log('Number ' + i);
+//   i++;
+// }
+// 
+// // do loop - always iterates at least once regardless of while clause
+// i = 1000; // will run once despite being > 10
+// do {
+//   console.log('Number ' + i);
+//   i++;
+// }
+// while (i < 10);
+// // generally, use a for loop when you know how many iterations you need to
+// // loop through, and use a while/do loop for when you don't.
+// 
+// // array for loop
+// const cars = ['mercedes', 'volkswagen', 'honda', 'toyota'];
+// for (let i = 0; i < cars.length; i++) {
+//   console.log(cars[i]);
+// }
+// 
+// // foreach - executes provided function on each array element
+// cars.forEach(function(car, index, array) {
+//   console.log(`${index} : ${car}`);
+//   console.log(array);
+// });
+// 
+// // map - creates a new array with the results of calling a provided function on
+// // every element in the calling array
+// const users = [
+//   {id: 1, name: 'john'},
+//   {id: 2, name: 'josh'},
+//   {id: 3, name: 'colin'}
+// ];
+// const ids = users.map(function(user) {
+//   return user.id;
+// });
+// console.log(ids);
+// 
+// // for in loop - used for looping through objects
+// const user = {
+//   firstName: 'josh',
+//   lastName: 'cullen',
+//   age: 27
+// };
+// for (let x in user) { // each element in object user
+//   //console.log(x); // logs the key (firstName, lastName, age)
+//   console.log(`${x} : ${user[x]}`); // logs key and value
+// }
 
-// for loop
-for (let i = 0; i < 10; i++) {
-  if (i === 2) {
-    console.log('2 is my fave');
-    continue; // exits the current iteration but continues the loop
-  }
-  if (i === 5) {
-    console.log('stop loop');
-    break; // exits the loop entirely
-  }
-  console.log('Number ' + i);
+// ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬
+// 19. A Look At The Window Object
+// ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬
+
+// Node.JS and Chrome both use the same JavaScript engine: V8
+// Window methods, objects, and properties
+
+window.console.log(123);
+
+// alert
+window.alert('Hello World');
+alert('Hello World');
+
+// prompt
+const input = prompt();
+alert(input);
+
+// confirm - for confirming input
+if (confirm('Are you sure?')) {
+  console.log('yes');
+}
+else {
+  console.log('no');
 }
 
-// while loop
-let i = 0;
-while (i < 10) {
-  console.log('Number ' + i);
-  i++;
+let val;
+// outer height/width
+val = window.outerHeight;
+val = window.outerWidth;
+// inner height/width
+val = window.innerHeight;
+val = window.outerHeight;
+// scroll points - good for animating a website scroll
+val = window.scrollY;
+val = window.scrollX;
+
+// Location object
+val = location;
+val = location.hostname;
+val = location.port;
+val = location.href;
+val = location.search; // RETURNS THE QUERYSTRING (i.e. '?f=json&token=...')
+// redirect
+window.location.href = 'http://google.com';
+// reload
+if (confirm('reload?')) {
+  window.location.reload(); // reloads page
 }
 
-// do loop - always iterates at least once regardless of while clause
-i = 1000; // will run once despite being > 10
-do {
-  console.log('Number ' + i);
-  i++;
-}
-while (i < 10);
-// generally, use a for loop when you know how many iterations you need to
-// loop through, and use a while/do loop for when you don't.
+// History Object
+history.go(-2); // navigate through history by number
+// -2 brings you two pages back in the history
+val = history.length; // returns number of pages in history
 
-// array for loop
-const cars = ['mercedes', 'volkswagen', 'honda', 'toyota'];
-for (let i = 0; i < cars.length; i++) {
-  console.log(cars[i]);
-}
+// Navigator object
+val = window.navigator;
+val = navigator.appName; // will always be Netscape unless using IE
+val = navigator.appVersion; // specifies 4th/5th gen browsers and gives version
+val = navigator.userAgent; // similar to appVersion
+val = navigator.platform; // Win32 (Darwin for macOS)
+val = navigator.vendor; // Google Inc.
+val = navigator.language; // en-US
 
-// foreach - executes provided function on each array element
-cars.forEach(function(car, index, array) {
-  console.log(`${index} : ${car}`);
-  console.log(array);
-});
-
-// map - creates a new array with the results of calling a provided function on
-// every element in the calling array
-const users = [
-  {id: 1, name: 'john'},
-  {id: 2, name: 'josh'},
-  {id: 3, name: 'colin'}
-];
-const ids = users.map(function(user) {
-  return user.id;
-});
-console.log(ids);
-
-// for in loop - used for looping through objects
-const user = {
-  firstName: 'josh',
-  lastName: 'cullen',
-  age: 27
-};
-for (let x in user) { // each element in object user
-  //console.log(x); // logs the key (firstName, lastName, age)
-  console.log(`${x} : ${user[x]}`); // logs key and value
-}
+console.log(val);
 
 
 
@@ -774,9 +839,7 @@ for (let x in user) { // each element in object user
 
 
 
-
-
-
+ 
 
 
 
