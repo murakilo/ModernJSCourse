@@ -768,72 +768,111 @@
 //   console.log(`${x} : ${user[x]}`); // logs key and value
 // }
 
-// ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬
-// 19. A Look At The Window Object
-// ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬
+// // ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬
+// // 19. A Look At The Window Object
+// // ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬
+// 
+// // Node.JS and Chrome both use the same JavaScript engine: V8
+// // Window methods, objects, and properties
+// 
+// window.console.log(123);
+// 
+// // alert
+// window.alert('Hello World');
+// alert('Hello World');
+// 
+// // prompt
+// const input = prompt();
+// alert(input);
+// 
+// // confirm - for confirming input
+// if (confirm('Are you sure?')) {
+//   console.log('yes');
+// }
+// else {
+//   console.log('no');
+// }
+// 
+// let val;
+// // outer height/width
+// val = window.outerHeight;
+// val = window.outerWidth;
+// // inner height/width
+// val = window.innerHeight;
+// val = window.outerHeight;
+// // scroll points - good for animating a website scroll
+// val = window.scrollY;
+// val = window.scrollX;
+// 
+// // Location object
+// val = location;
+// val = location.hostname;
+// val = location.port;
+// val = location.href;
+// val = location.search; // RETURNS THE QUERYSTRING (i.e. '?f=json&token=...')
+// // redirect
+// window.location.href = 'http://google.com';
+// // reload
+// if (confirm('reload?')) {
+//   window.location.reload(); // reloads page
+// }
+// 
+// // History Object
+// history.go(-2); // navigate through history by number
+// // -2 brings you two pages back in the history
+// val = history.length; // returns number of pages in history
+// 
+// // Navigator object
+// val = window.navigator;
+// val = navigator.appName; // will always be Netscape unless using IE
+// val = navigator.appVersion; // specifies 4th/5th gen browsers and gives version
+// val = navigator.userAgent; // similar to appVersion
+// val = navigator.platform; // Win32 (Darwin for macOS)
+// val = navigator.vendor; // Google Inc.
+// val = navigator.language; // en-US
+// 
+// console.log(val);
 
-// Node.JS and Chrome both use the same JavaScript engine: V8
-// Window methods, objects, and properties
+// ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬
+// 21. Block Scope With let & const
+// ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬ ¬
 
-window.console.log(123);
+// global scope
+var a = 1;
+let b = 2;
+const c = 3;
+console.log('Global scope: ', a, b, c); // returns 1 2 3
 
-// alert
-window.alert('Hello World');
-alert('Hello World');
-
-// prompt
-const input = prompt();
-alert(input);
-
-// confirm - for confirming input
-if (confirm('Are you sure?')) {
-  console.log('yes');
+function test() {
+  // Function scope
+  var a = 4;
+  let b = 5;
+  const c = 6;
+  console.log('Function scope: ', a, b, c);
 }
-else {
-  console.log('no');
+test(); // returns 4 5 6
+
+if (true) {
+  // Block scope
+  var a = 4;
+  let b = 5;
+  const c = 6;
+  console.log('Block scope: ', a, b, c); // returns 4 5 6
 }
+console.log('Global scope: ', a, b, c); // returns 4 2 3
+// return differently due to method of variable instantiation
+// only the var is different here. a is reassigned globally
 
-let val;
-// outer height/width
-val = window.outerHeight;
-val = window.outerWidth;
-// inner height/width
-val = window.innerHeight;
-val = window.outerHeight;
-// scroll points - good for animating a website scroll
-val = window.scrollY;
-val = window.scrollX;
-
-// Location object
-val = location;
-val = location.hostname;
-val = location.port;
-val = location.href;
-val = location.search; // RETURNS THE QUERYSTRING (i.e. '?f=json&token=...')
-// redirect
-window.location.href = 'http://google.com';
-// reload
-if (confirm('reload?')) {
-  window.location.reload(); // reloads page
+for (let a = 0; a < 10; a++) {
+  console.log(`Loop: ${a}`);
 }
-
-// History Object
-history.go(-2); // navigate through history by number
-// -2 brings you two pages back in the history
-val = history.length; // returns number of pages in history
-
-// Navigator object
-val = window.navigator;
-val = navigator.appName; // will always be Netscape unless using IE
-val = navigator.appVersion; // specifies 4th/5th gen browsers and gives version
-val = navigator.userAgent; // similar to appVersion
-val = navigator.platform; // Win32 (Darwin for macOS)
-val = navigator.vendor; // Google Inc.
-val = navigator.language; // en-US
-
-console.log(val);
-
-
+console.log('Global scope: ', a, b, c); // returns 4 2 3 still
+for (var a = 0; a < 10; a++) {
+  console.log(`Loop: ${a}`);
+}
+console.log('Global scope: ', a, b, c); // returns 10 2 3 due to assigning a with var
+// let = block level scope
+// var = function level scope
 
 
 
