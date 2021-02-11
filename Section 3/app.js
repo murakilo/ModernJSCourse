@@ -116,13 +116,36 @@ const listItems = document.querySelector('ul').getElementsByClassName('collectio
 console.log(listItems);
 
 // document.getElementsByTagName
-const lis = document.getElementsByTagName('li'); // returns HTMLCollection(5)
+let lis = document.getElementsByTagName('li'); // returns HTMLCollection(5)
 console.log(lis);
-// console.log(lis[0]);
-// lis[0].style.color = 'red';
-// lis[3].textContent = 'Hello World';
+console.log(lis[0]);
+lis[0].style.color = 'red';
+lis[3].textContent = 'Hello';
 
+lis = Array.from(lis);
+lis.reverse();
+lis.forEach(function(li, index) {
+  console.log(li.className);
+  li.textContent = `${index}: beans`;
+});
+console.log(lis);
 
+// document.querySelectorAll()
+const items2 = document.querySelectorAll('ul.collection li.collection-item'); // returns a nodelist
+console.log(items2);
+// can do forEach on nodelist without converting to array
+items2.forEach(function(item) {
+  item.textContent = 'boostio';
+});
+
+const liOdd = document.querySelectorAll('li:nth-child(odd)');
+const liEven = document.querySelectorAll('li:nth-child(even)');
+liOdd.forEach(function(li, index) {
+  li.style.background = 'grey';
+});
+for (let i=0; i < liEven.length; i++) { // this can be done on an HTMLCollection also
+  liEven[i].style.background = 'red';
+}
 
 
 
