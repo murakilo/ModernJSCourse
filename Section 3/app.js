@@ -98,54 +98,145 @@
 // document.querySelector('li:nth-child(even)').style.background = '#D0D0D0'; // changes second (even) li background to grey
 // // use querySelectorAll to grab all odd/even elements
 
-// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-// 25. DOM Selectors for Multiple Elements
-// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// // 25. DOM Selectors for Multiple Elements
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 
+// // return HTMLCollection or a nodelist - both similar to arrays
+// // can be converted into arrays very easily
+// 
+// // document.getElementsByClassName('')
+// const items = document.getElementsByClassName('collection-item'); // returns HTMLCollection(5)
+// console.log(items);
+// console.log(items[0]);
+// items[0].style.color = 'red';
+// items[3].textContent = 'Hello World';
+// 
+// const listItems = document.querySelector('ul').getElementsByClassName('collection-item');
+// console.log(listItems);
+// 
+// // document.getElementsByTagName
+// let lis = document.getElementsByTagName('li'); // returns HTMLCollection(5)
+// console.log(lis);
+// console.log(lis[0]);
+// lis[0].style.color = 'red';
+// lis[3].textContent = 'Hello';
+// 
+// lis = Array.from(lis);
+// lis.reverse();
+// lis.forEach(function(li, index) {
+//   console.log(li.className);
+//   li.textContent = `${index}: beans`;
+// });
+// console.log(lis);
+// 
+// // document.querySelectorAll()
+// const items2 = document.querySelectorAll('ul.collection li.collection-item'); // returns a nodelist
+// console.log(items2);
+// // can do forEach on nodelist without converting to array
+// items2.forEach(function(item) {
+//   item.textContent = 'boostio';
+// });
+// 
+// const liOdd = document.querySelectorAll('li:nth-child(odd)');
+// const liEven = document.querySelectorAll('li:nth-child(even)');
+// liOdd.forEach(function(li, index) {
+//   li.style.background = 'grey';
+// });
+// for (let i=0; i < liEven.length; i++) { // this can be done on an HTMLCollection also
+//   liEven[i].style.background = 'red';
+// }
 
-// return HTMLCollection or a nodelist - both similar to arrays
-// can be converted into arrays very easily
 
-// document.getElementsByClassName('')
-const items = document.getElementsByClassName('collection-item'); // returns HTMLCollection(5)
-console.log(items);
-console.log(items[0]);
-items[0].style.color = 'red';
-items[3].textContent = 'Hello World';
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// // 26. Traversing The DOM
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 
+// // parents and children of nodes
+// 
+// let val;
+// const list = document.querySelector('ul.collection'); // selects first ul element with a class of collection
+// const listItem = document.querySelector('li.collection-item:first-child'); // selects first li element with a class of collection
+// 
+// // get child nodes
+// val = list.childNodes; // returns a nodelist containing all NODES (not just elements) meeting req
+// // there are text nodes between li elements. these are the linebreaks
+// val = list.childNodes[0].nodeName; // #text
+// val = list.childNodes[0].nodeType; // 3
+// val = list.childNodes[1].nodeType; // 1 - number is a 'dictionary key'
+// // NODETYPES
+// // 1 - element
+// // 2 - attribute (deprecated)
+// // 3 - text node
+// // 8 - comment
+// // 9 - document itself (document tag)
+// // 10 - doctype
+// 
+// val = list.children; // returns a HTMLCollection but returns only elements. no line breaks or comments etc.
+// val = list.children[1];
+// val = list.children[1].textContent = 'HELLOOOO';
+// val = list.children[3].children[0].id = 'testLink';
+// val = list.children[3].children[0];
+// 
+// // first child
+// val = list.firstChild; // #text
+// val = list.firstElementChild; // returns first li element
+// // last child
+// val = list.lastChild; // #text
+// val = list.lastElementChild; // returns last li element
+// // child count
+// val = list.childElementCount; // returns 5 - five list items
+// 
+// // get parent node
+// val = listItem.parentNode; // returns ul element encompassing li. COULD return something else i.e. comment
+// val = listItem.parentElement; // returns ul element encompassing li. will always return parent element
+// val = listItem.parentElement.parentElement; // returns parent of parent - div.card-action
+// 
+// // get next sibling
+// val = listItem.nextSibling; // #text - gets next node after first li. in this case, the linebreak
+// val = listItem.nextElementSibling; // returns next li element
+// // get previous subling
+// val = listItem.previousSibling; // #text
+// val = listItem.previousElementSibling; // null
+// 
+// console.log(val);
 
-const listItems = document.querySelector('ul').getElementsByClassName('collection-item');
-console.log(listItems);
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 27. Creating elements
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
-// document.getElementsByTagName
-let lis = document.getElementsByTagName('li'); // returns HTMLCollection(5)
-console.log(lis);
-console.log(lis[0]);
-lis[0].style.color = 'red';
-lis[3].textContent = 'Hello';
+// how to create elements, add it to DOM, etc.
+// create li item and add to end of ul collection
 
-lis = Array.from(lis);
-lis.reverse();
-lis.forEach(function(li, index) {
-  console.log(li.className);
-  li.textContent = `${index}: beans`;
-});
-console.log(lis);
+// create element
+const li = document.createElement('li');
+// add class
+li.className = 'collection-item';
+// add id
+li.id = 'new-item';
+// add attribute
+li.setAttribute('title', 'New Item');
+// create text node and append
+li.appendChild(document.createTextNode('hello world'));
+// create new link element
+const link = document.createElement('a');
+// add classes
+link.className = 'delete-item secondary-content';
+// add icon html
+link.innerHTML = '<i class="fa fa-remove"></i>';
+// append link element into li
+li.appendChild(link);
+// append li as child to ul
+document.querySelector('ul.collection').appendChild(li);
 
-// document.querySelectorAll()
-const items2 = document.querySelectorAll('ul.collection li.collection-item'); // returns a nodelist
-console.log(items2);
-// can do forEach on nodelist without converting to array
-items2.forEach(function(item) {
-  item.textContent = 'boostio';
-});
 
-const liOdd = document.querySelectorAll('li:nth-child(odd)');
-const liEven = document.querySelectorAll('li:nth-child(even)');
-liOdd.forEach(function(li, index) {
-  li.style.background = 'grey';
-});
-for (let i=0; i < liEven.length; i++) { // this can be done on an HTMLCollection also
-  liEven[i].style.background = 'red';
-}
+
+console.log(li);
+
+
+
+
+
 
 
 
