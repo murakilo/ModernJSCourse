@@ -232,56 +232,106 @@
 // 
 // console.log(li);
 
-// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-// 28. Removing & Replace elements
-// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// // 28. Removing & Replace elements
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 
+// // replacing elements
+// // h5 to h2
+// // create the new element that we are replacing the old one with (h2)
+// const newHeading = document.createElement('h2'); // <h2></h2>
+// newHeading.id = 'task-title';
+// newHeading.appendChild(document.createTextNode('Task List')); // <h2 id="task-title">Task List</h2>
+// 
+// // get the old heading to be replaced (h5)
+// const oldHeading = document.getElementById('task-title');
+// // we need parent of this element as we are going to use replaceChild()
+// const cardAction = document.querySelector('.card-action');
+// cardAction.replaceChild(newHeading, oldHeading); // The Task List element will now be larger
+// 
+// 
+// // removing elements
+// const lis = document.querySelectorAll('li'); // gets all list items
+// const list = document.querySelector('ul'); // only one ul to get
+// // remove list item
+// lis[0].remove(); // removes first li
+// // remove child element
+// list.removeChild(lis[3]);
+// 
+// // classes and attributes
+// const firstLi = document.querySelector('li:nth-child(1)'); // gets first li
+// const link = firstLi.children[0];
+// 
+// let val;
+// 
+// // classes
+// val = link.className; // delete-item secondary-content
+// val = link.classList;
+// val = link.classList[0]; // delete-item
+// link.classList.add('test'); // adds 'test' to class attribute
+// link.classList.remove('test'); // removes 'test
+// val = link;
+// 
+// // attributes
+// val = link.getAttribute('href'); // #
+// val = link.setAttribute('href', 'https://www.google.com'); // link now points to google
+// val = link.hasAttribute('href'); // true
+// val = link.hasAttribute('title'); // false
+// val = link;
+// link.setAttribute('title', 'gogle');
+// link.removeAttribute('title'); 
+// 
+// console.log(val);
 
-// replacing elements
-// h5 to h2
-// create the new element that we are replacing the old one with (h2)
-const newHeading = document.createElement('h2'); // <h2></h2>
-newHeading.id = 'task-title';
-newHeading.appendChild(document.createTextNode('Task List')); // <h2 id="task-title">Task List</h2>
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 29. Event Listeners & The Event Object
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
-// get the old heading to be replaced (h5)
-const oldHeading = document.getElementById('task-title');
-// we need parent of this element as we are going to use replaceChild()
-const cardAction = document.querySelector('.card-action');
-cardAction.replaceChild(newHeading, oldHeading); // The Task List element will now be larger
+// we can listen for events on anything in the DOM
+// we'll add an eventListener on the CLEAR TASKS button
+
+const clearTasksBtn = document.querySelector('.clear-tasks');
+// clearTasksBtn.addEventListener('click', function(e) {
+//   console.log('hello world');  
+//   e.preventDefault();
+// });
+// clicking this button will cause the browser to reload. this is due to the empty href tag
+// we can stop this behaviour by setting href to '#' or by preventing the default behaviour in the callback function
+clearTasksBtn.setAttribute('href', '#');
+
+clearTasksBtn.addEventListener('click', onClick);
+function onClick(e) {
+  //console.log('clicked');
+  //e.preventDefault();
+  let val;
+  val = e; // lists MouseEvent event listener
+  // clientX/clientY returns position in page of where the event happened
+  // shiftKey tells us if shift was held when the event happened
+  // timestamp returns time of event
+  // target represents element that captured event (in this case, the a tag)
+  
+  // event target element
+  val = e.target; // returns element
+  val = e.target.id; // returns element ID (blank in this case)
+  val = e.target.className; // returns element class - clear-tasks btn black
+  val = e.target.classList; // returns DOMTokenList of classes
+  e.target.innerText = 'hello'; // changes text in button to 'hello'
+  
+  val = e.type; // click
+  val = e.timeStamp; // returns time of event in milliseconds since pageload
+  val = e.clientX; // returns x coordinate of event relative to window size
+  val = e.clientY; // returns y coordinate of event relative to window size
+  val = e.offsetX; // returns x coord relative to element position
+  val = e.offsetY; // returns y coord relative to element position
+  
+  console.log(val);
+}
 
 
-// removing elements
-const lis = document.querySelectorAll('li'); // gets all list items
-const list = document.querySelector('ul'); // only one ul to get
-// remove list item
-lis[0].remove(); // removes first li
-// remove child element
-list.removeChild(lis[3]);
 
-// classes and attributes
-const firstLi = document.querySelector('li:nth-child(1)'); // gets first li
-const link = firstLi.children[0];
 
-let val;
 
-// classes
-val = link.className; // delete-item secondary-content
-val = link.classList;
-val = link.classList[0]; // delete-item
-link.classList.add('test'); // adds 'test' to class attribute
-link.classList.remove('test'); // removes 'test
-val = link;
-
-// attributes
-val = link.getAttribute('href'); // #
-val = link.setAttribute('href', 'https://www.google.com'); // link now points to google
-val = link.hasAttribute('href'); // true
-val = link.hasAttribute('title'); // false
-val = link;
-link.setAttribute('title', 'gogle');
-link.removeAttribute('title'); 
-
-console.log(val);
+console.log(clearTasksBtn);
 
 
 
