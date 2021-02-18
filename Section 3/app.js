@@ -201,36 +201,89 @@
 // 
 // console.log(val);
 
-// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-// 27. Creating elements
-// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// // 27. Creating elements
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 
+// // how to create elements, add it to DOM, etc.
+// // create li item and add to end of ul collection
+// 
+// // create element
+// const li = document.createElement('li'); // <li></li>
+// // add class
+// li.className = 'collection-item'; // <li class="collection-item"></li>
+// // add id
+// li.id = 'new-item'; // <li class="collection-item" id="new-item"></li>
+// // add attribute
+// li.setAttribute('title', 'New Item'); // <li class="collection-item" id="new-item" title="New Item"></li>
+// // create text node and append
+// li.appendChild(document.createTextNode('hello world')); //<li class="collection-item" id="new-item" title="New Item">hello world</li>
+// // create new link element
+// const link = document.createElement('a'); // <a></a>
+// // add classes
+// link.className = 'delete-item secondary-content'; // <a class="delete-item secondary-content"></a>
+// // add icon html
+// link.innerHTML = '<i class="fa fa-remove"></i>'; // <a class="delete-item secondary-content"><i class="fa fa-remove"></i></a>
+// // append link element into li
+// li.appendChild(link); // <li class="collection-item" id="new-item" title="New Item">hello world<a class="delete-item secondary-content"><i class="fa fa-remove"></i></a></li>
+// // append li as child to ul
+// document.querySelector('ul.collection').appendChild(li);
+// 
+// 
+// console.log(li);
 
-// how to create elements, add it to DOM, etc.
-// create li item and add to end of ul collection
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 28. Removing & Replace elements
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
-// create element
-const li = document.createElement('li'); // <li></li>
-// add class
-li.className = 'collection-item'; // <li class="collection-item"></li>
-// add id
-li.id = 'new-item'; // <li class="collection-item" id="new-item"></li>
-// add attribute
-li.setAttribute('title', 'New Item'); // <li class="collection-item" id="new-item" title="New Item"></li>
-// create text node and append
-li.appendChild(document.createTextNode('hello world')); //<li class="collection-item" id="new-item" title="New Item">hello world</li>
-// create new link element
-const link = document.createElement('a'); // <a></a>
-// add classes
-link.className = 'delete-item secondary-content'; // <a class="delete-item secondary-content"></a>
-// add icon html
-link.innerHTML = '<i class="fa fa-remove"></i>'; // <a class="delete-item secondary-content"><i class="fa fa-remove"></i></a>
-// append link element into li
-li.appendChild(link); // <li class="collection-item" id="new-item" title="New Item">hello world<a class="delete-item secondary-content"><i class="fa fa-remove"></i></a></li>
-// append li as child to ul
-document.querySelector('ul.collection').appendChild(li);
+// replacing elements
+// h5 to h2
+// create the new element that we are replacing the old one with (h2)
+const newHeading = document.createElement('h2'); // <h2></h2>
+newHeading.id = 'task-title';
+newHeading.appendChild(document.createTextNode('Task List')); // <h2 id="task-title">Task List</h2>
+
+// get the old heading to be replaced (h5)
+const oldHeading = document.getElementById('task-title');
+// we need parent of this element as we are going to use replaceChild()
+const cardAction = document.querySelector('.card-action');
+cardAction.replaceChild(newHeading, oldHeading); // The Task List element will now be larger
 
 
-console.log(li);
+// removing elements
+const lis = document.querySelectorAll('li'); // gets all list items
+const list = document.querySelector('ul'); // only one ul to get
+// remove list item
+lis[0].remove(); // removes first li
+// remove child element
+list.removeChild(lis[3]);
+
+// classes and attributes
+const firstLi = document.querySelector('li:nth-child(1)'); // gets first li
+const link = firstLi.children[0];
+
+let val;
+
+// classes
+val = link.className; // delete-item secondary-content
+val = link.classList;
+val = link.classList[0]; // delete-item
+link.classList.add('test'); // adds 'test' to class attribute
+link.classList.remove('test'); // removes 'test
+val = link;
+
+// attributes
+val = link.getAttribute('href'); // #
+val = link.setAttribute('href', 'https://www.google.com'); // link now points to google
+val = link.hasAttribute('href'); // true
+val = link.hasAttribute('title'); // false
+val = link;
+link.setAttribute('title', 'gogle');
+link.removeAttribute('title'); 
+
+console.log(val);
+
+
 
 
 
