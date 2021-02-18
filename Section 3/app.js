@@ -209,26 +209,25 @@
 // create li item and add to end of ul collection
 
 // create element
-const li = document.createElement('li');
+const li = document.createElement('li'); // <li></li>
 // add class
-li.className = 'collection-item';
+li.className = 'collection-item'; // <li class="collection-item"></li>
 // add id
-li.id = 'new-item';
+li.id = 'new-item'; // <li class="collection-item" id="new-item"></li>
 // add attribute
-li.setAttribute('title', 'New Item');
+li.setAttribute('title', 'New Item'); // <li class="collection-item" id="new-item" title="New Item"></li>
 // create text node and append
-li.appendChild(document.createTextNode('hello world'));
+li.appendChild(document.createTextNode('hello world')); //<li class="collection-item" id="new-item" title="New Item">hello world</li>
 // create new link element
-const link = document.createElement('a');
+const link = document.createElement('a'); // <a></a>
 // add classes
-link.className = 'delete-item secondary-content';
+link.className = 'delete-item secondary-content'; // <a class="delete-item secondary-content"></a>
 // add icon html
-link.innerHTML = '<i class="fa fa-remove"></i>';
+link.innerHTML = '<i class="fa fa-remove"></i>'; // <a class="delete-item secondary-content"><i class="fa fa-remove"></i></a>
 // append link element into li
-li.appendChild(link);
+li.appendChild(link); // <li class="collection-item" id="new-item" title="New Item">hello world<a class="delete-item secondary-content"><i class="fa fa-remove"></i></a></li>
 // append li as child to ul
 document.querySelector('ul.collection').appendChild(li);
-
 
 
 console.log(li);
