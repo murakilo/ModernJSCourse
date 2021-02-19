@@ -283,56 +283,78 @@
 // 
 // console.log(val);
 
-// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-// 29. Event Listeners & The Event Object
-// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// // 29. Event Listeners & The Event Object
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 
+// // we can listen for events on anything in the DOM
+// // we'll add an eventListener on the CLEAR TASKS button
+// 
+// const clearTasksBtn = document.querySelector('.clear-tasks');
+// // clearTasksBtn.addEventListener('click', function(e) {
+// //   console.log('hello world');  
+// //   e.preventDefault();
+// // });
+// // clicking this button will cause the browser to reload. this is due to the empty href tag
+// // we can stop this behaviour by setting href to '#' or by preventing the default behaviour in the callback function
+// clearTasksBtn.setAttribute('href', '#');
+// 
+// clearTasksBtn.addEventListener('click', onClick);
+// function onClick(e) {
+//   //console.log('clicked');
+//   //e.preventDefault();
+//   let val;
+//   val = e; // lists MouseEvent event listener
+//   // clientX/clientY returns position in page of where the event happened
+//   // shiftKey tells us if shift was held when the event happened
+//   // timestamp returns time of event
+//   // target represents element that captured event (in this case, the a tag)
+// 
+//   // event target element
+//   val = e.target; // returns element
+//   val = e.target.id; // returns element ID (blank in this case)
+//   val = e.target.className; // returns element class - clear-tasks btn black
+//   val = e.target.classList; // returns DOMTokenList of classes
+//   e.target.innerText = 'hello'; // changes text in button to 'hello'
+// 
+//   val = e.type; // click
+//   val = e.timeStamp; // returns time of event in milliseconds since pageload
+//   val = e.clientX; // returns x coordinate of event relative to window size
+//   val = e.clientY; // returns y coordinate of event relative to window size
+//   val = e.offsetX; // returns x coord relative to element position
+//   val = e.offsetY; // returns y coord relative to element position
+// 
+//   console.log(val);
+// }
+// 
+// console.log(clearTasksBtn);
 
-// we can listen for events on anything in the DOM
-// we'll add an eventListener on the CLEAR TASKS button
 
-const clearTasksBtn = document.querySelector('.clear-tasks');
-// clearTasksBtn.addEventListener('click', function(e) {
-//   console.log('hello world');  
-//   e.preventDefault();
-// });
-// clicking this button will cause the browser to reload. this is due to the empty href tag
-// we can stop this behaviour by setting href to '#' or by preventing the default behaviour in the callback function
-clearTasksBtn.setAttribute('href', '#');
+// ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 30. Mouse Events
+// ~ ~ ~ ~ ~ ~ ~ ~ ~
 
-clearTasksBtn.addEventListener('click', onClick);
-function onClick(e) {
-  //console.log('clicked');
-  //e.preventDefault();
-  let val;
-  val = e; // lists MouseEvent event listener
-  // clientX/clientY returns position in page of where the event happened
-  // shiftKey tells us if shift was held when the event happened
-  // timestamp returns time of event
-  // target represents element that captured event (in this case, the a tag)
-  
-  // event target element
-  val = e.target; // returns element
-  val = e.target.id; // returns element ID (blank in this case)
-  val = e.target.className; // returns element class - clear-tasks btn black
-  val = e.target.classList; // returns DOMTokenList of classes
-  e.target.innerText = 'hello'; // changes text in button to 'hello'
-  
-  val = e.type; // click
-  val = e.timeStamp; // returns time of event in milliseconds since pageload
-  val = e.clientX; // returns x coordinate of event relative to window size
-  val = e.clientY; // returns y coordinate of event relative to window size
-  val = e.offsetX; // returns x coord relative to element position
-  val = e.offsetY; // returns y coord relative to element position
-  
-  console.log(val);
+const clearBtn = document.querySelector('.clear-tasks');
+const card = document.querySelector('.card');
+const heading = document.querySelector('h5');
+
+clearBtn.addEventListener('click', runEvent);
+clearBtn.addEventListener('dblclick', runEvent);
+card.addEventListener('mousemove', runEvent);
+clearBtn.addEventListener('mouseup', runEvent);
+clearBtn.addEventListener('mousedown', runEvent);
+card.addEventListener('mouseenter', runEvent);
+card.addEventListener('mouseleave', runEvent);
+card.addEventListener('mouseover', runEvent);
+card.addEventListener('mouseout', runEvent);
+clearBtn.addEventListener('wheel', runEvent);
+
+// event handler
+function runEvent(e) {
+  console.log(`EVENT TYPE: ${e.type}`);
+  heading.innerHTML = `X: ${e.offsetX}\nY: ${e.offsetY}`;
+  card.style.backgroundColor = `rgb(${e.offsetX},${e.offsetY}, 255)`;
 }
-
-
-
-
-
-console.log(clearTasksBtn);
-
 
 
 
