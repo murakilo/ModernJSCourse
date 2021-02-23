@@ -356,40 +356,102 @@
 //   card.style.backgroundColor = `rgb(${e.offsetX},${e.offsetY}, 255)`;
 // }
 
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// // 31. Keyboard & Input Events
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 
+// const form = document.querySelector('form');
+// const taskInput = document.getElementById('task');
+// const heading = document.querySelector('h5');
+// const select = document.querySelector('select');
+// 
+// taskInput.value = '';
+// 
+// form.addEventListener('submit', runEvent);
+// 
+// taskInput.addEventListener('keydown', runEvent);
+// // taskInput.addEventListener('keyup', runEvent); // keyup and keydown are fired for all keys
+// // taskInput.addEventListener('keypress', runEvent); // keypress is only fired if the key produces a character value (i.e. ignores arrow keys)
+// // taskInput.addEventListener('focus', runEvent);
+// // taskInput.addEventListener('blur', runEvent); // opposite of focus
+// // taskInput.addEventListener('cut', runEvent);
+// // taskInput.addEventListener('paste', runEvent);
+// // taskInput.addEventListener('copy', runEvent);
+// // taskInput.addEventListener('input', runEvent); // catch all input
+// 
+// select.addEventListener('change', runEvent);
+// 
+// 
+// function runEvent(e) {
+//   console.log(`Event Type: ${e.type}`);
+//   // console.log(e.target.value);
+// 
+//   //console.log(`Task Value: ${taskInput.value}`);
+//   heading.innerText = e.target.value;
+//   // e.preventDefault();
+// }
+
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 // 31. Keyboard & Input Events
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
-const form = document.querySelector('form');
-const taskInput = document.getElementById('task');
-const heading = document.querySelector('h5');
-const select = document.querySelector('select');
+// // event bubbling - bubbling up of events through the DOM
+// // events bubble up through their parents
+// // event delegation - opposite of event bubbling
+// // we'll put the listener on parent and use logic inside event handler to target
+// // element that we actually want that event for.
+// 
+// // event bubbling
+// document.querySelector('.card-title').addEventListener('click', 
+// function() {
+//   console.log('card title');
+// });
+// document.querySelector('.card-content').addEventListener('click',
+// function() {
+//   console.log('card content');
+// });
+// document.querySelector('.card').addEventListener('click',
+// function() {
+//   console.log('card');
+// });
+// document.querySelector('.col').addEventListener('click',
+// function() {
+//   console.log('col');
+// });
+// // clicking on the card-title element will cause all of these events
+// // to fire off due to it being a child of all these element.
 
-taskInput.value = '';
+// // event delegation
+// // eventListener goes on parent and fires downwards
+// // example without delegation
+// const delItem = document.querySelector('.delete-item');
+// delItem.addEventListener('click', deleteItem);
+// function deleteItem(e) {
+//   console.log('delete item');
+//   console.log(e.target);
+// }
+// // this event listener will only fire on click of the first delete-item 
+// // element so event delegation is necessary to fire this event off on all 
+// // delete-item elems.
 
-form.addEventListener('submit', runEvent);
-
-taskInput.addEventListener('keydown', runEvent);
-// taskInput.addEventListener('keyup', runEvent); // keyup and keydown are fired for all keys
-// taskInput.addEventListener('keypress', runEvent); // keypress is only fired if the key produces a character value (i.e. ignores arrow keys)
-// taskInput.addEventListener('focus', runEvent);
-// taskInput.addEventListener('blur', runEvent); // opposite of focus
-// taskInput.addEventListener('cut', runEvent);
-// taskInput.addEventListener('paste', runEvent);
-// taskInput.addEventListener('copy', runEvent);
-// taskInput.addEventListener('input', runEvent); // catch all input
-
-select.addEventListener('change', runEvent);
-
-
-function runEvent(e) {
-  console.log(`Event Type: ${e.type}`);
-  // console.log(e.target.value);
-  
-  //console.log(`Task Value: ${taskInput.value}`);
-  heading.innerText = e.target.value;
-  // e.preventDefault();
+// another example where event delegation is necessary is when programmatically
+// inserting an element into the DOM after pageload.
+// we'll use a parent element (body) to do this instead of the delete-item class
+document.body.addEventListener('click', deleteItem);
+function deleteItem(e) {
+  if (e.target.parentElement.classList.contains('delete-item')) {
+    console.log('delete item');
+    e.target.parentElements.remove();
+  }
 }
+// in summary, we placed the event listener on the parent and added a condition
+// to try and find the target element
+
+
+
+
+
+
 
 
 
