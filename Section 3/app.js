@@ -6,9 +6,9 @@
 // // Section 3: DOM Manipulation & Events
 // // 23. Examining the Document Object
 // // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-// 
+//
 // let val;
-// 
+//
 // val = document;
 // val = document.all;
 // val = document.all[9];
@@ -20,21 +20,21 @@
 // val = document.URL;
 // val = document.characterSet;
 // val = document.contentType;
-// 
+//
 // val = document.forms;
 // val = document.forms[0];
 // val = document.forms[0].id;
 // val = document.forms[0].method; // get
 // val = document.forms[0].action;
-// 
+//
 // val = document.links;
 // val = document.links[0];
 // val = document.links[0].id;
 // val = document.links[0].className;
 // val = document.links[0].classList; // returns a DOMTokenList containing classNames
-// val = document.links[0].classList[1]; 
 // val = document.links[0].classList[1];
-// 
+// val = document.links[0].classList[1];
+//
 // val = document.scripts;
 // // val = document.scripts[2].getAttribute('src');
 // for (var i = 0; i < val.length; i++) {
@@ -48,37 +48,37 @@
 // scriptsArray.forEach(function(script) {
 //   console.log(script.src);
 // });
-// 
+//
 // console.log(val);
 
 
 // // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 // // 24. DOM Selectors for Single Elements
 // // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-// // 
+// //
 // // Methods to pull things from DOM
-// // JQuery was used for a long time for this. Vanilla JS has since gotten a lot 
+// // JQuery was used for a long time for this. Vanilla JS has since gotten a lot
 // // easier to work with and JQuery is now mostly bloat.
 // // One thing JQuery is good for - quick simple plugins/scripts
-// // 
+// //
 // // Single vs multiple element selectors
 // // Single selectors return the first element that meets requirements
 // // Multiple selectors return arrays, HTMLCollections, etc.
-// 
+//
 // // document.getElementById()
 // console.log(document.getElementById('task-title')); // <h5 id="task-title" class="beans">Tasks</h5>
-// 
+//
 // //  Get things from the element
 // console.log(document.getElementById('task-title').id); // task-title
 // console.log(document.getElementById('task-title').className); // beans
-// 
+//
 // const taskTitle = document.getElementById('task-title');
 // // change styling
 // taskTitle.style.background = '#00FFFF';
 // taskTitle.style.color = '#F3FA3D';
 // taskTitle.style.padding = '10px';
 // // document.getElementById('task-title').style.display = 'none';
-// 
+//
 // // Change content
 // taskTitle.textContent = 'Task List';
 // taskTitle.innerText = 'My Tasks';
@@ -88,7 +88,7 @@
 // console.log(document.querySelector('#task-title')); // <h5 id="task-title" class="beans">Tasks</h5>
 // console.log(document.querySelector('.card-title')); // <span class="card-title">Task List</span>
 // console.log(document.querySelector('h5')); // <h5 id="task-title" class="beans">Tasks</h5>
-// 
+//
 // document.querySelector('li').style.color = 'red'; // changes first (not all) li item to red font color
 // document.querySelector('ul li').style.color = 'blue'; // changes first (not all) li item (inside ul) to red font color
 // document.querySelector('li:last-child').style.color = 'yellow'; // changes last li to yellow
@@ -101,27 +101,27 @@
 // // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 // // 25. DOM Selectors for Multiple Elements
 // // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-// 
+//
 // // return HTMLCollection or a nodelist - both similar to arrays
 // // can be converted into arrays very easily
-// 
+//
 // // document.getElementsByClassName('')
 // const items = document.getElementsByClassName('collection-item'); // returns HTMLCollection(5)
 // console.log(items);
 // console.log(items[0]);
 // items[0].style.color = 'red';
 // items[3].textContent = 'Hello World';
-// 
+//
 // const listItems = document.querySelector('ul').getElementsByClassName('collection-item');
 // console.log(listItems);
-// 
+//
 // // document.getElementsByTagName
 // let lis = document.getElementsByTagName('li'); // returns HTMLCollection(5)
 // console.log(lis);
 // console.log(lis[0]);
 // lis[0].style.color = 'red';
 // lis[3].textContent = 'Hello';
-// 
+//
 // lis = Array.from(lis);
 // lis.reverse();
 // lis.forEach(function(li, index) {
@@ -129,7 +129,7 @@
 //   li.textContent = `${index}: beans`;
 // });
 // console.log(lis);
-// 
+//
 // // document.querySelectorAll()
 // const items2 = document.querySelectorAll('ul.collection li.collection-item'); // returns a nodelist
 // console.log(items2);
@@ -137,7 +137,7 @@
 // items2.forEach(function(item) {
 //   item.textContent = 'boostio';
 // });
-// 
+//
 // const liOdd = document.querySelectorAll('li:nth-child(odd)');
 // const liEven = document.querySelectorAll('li:nth-child(even)');
 // liOdd.forEach(function(li, index) {
@@ -151,13 +151,13 @@
 // // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 // // 26. Traversing The DOM
 // // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-// 
+//
 // // parents and children of nodes
-// 
+//
 // let val;
 // const list = document.querySelector('ul.collection'); // selects first ul element with a class of collection
 // const listItem = document.querySelector('li.collection-item:first-child'); // selects first li element with a class of collection
-// 
+//
 // // get child nodes
 // val = list.childNodes; // returns a nodelist containing all NODES (not just elements) meeting req
 // // there are text nodes between li elements. these are the linebreaks
@@ -171,13 +171,13 @@
 // // 8 - comment
 // // 9 - document itself (document tag)
 // // 10 - doctype
-// 
+//
 // val = list.children; // returns a HTMLCollection but returns only elements. no line breaks or comments etc.
 // val = list.children[1];
 // val = list.children[1].textContent = 'HELLOOOO';
 // val = list.children[3].children[0].id = 'testLink';
 // val = list.children[3].children[0];
-// 
+//
 // // first child
 // val = list.firstChild; // #text
 // val = list.firstElementChild; // returns first li element
@@ -186,28 +186,28 @@
 // val = list.lastElementChild; // returns last li element
 // // child count
 // val = list.childElementCount; // returns 5 - five list items
-// 
+//
 // // get parent node
 // val = listItem.parentNode; // returns ul element encompassing li. COULD return something else i.e. comment
 // val = listItem.parentElement; // returns ul element encompassing li. will always return parent element
 // val = listItem.parentElement.parentElement; // returns parent of parent - div.card-action
-// 
+//
 // // get next sibling
 // val = listItem.nextSibling; // #text - gets next node after first li. in this case, the linebreak
 // val = listItem.nextElementSibling; // returns next li element
 // // get previous subling
 // val = listItem.previousSibling; // #text
 // val = listItem.previousElementSibling; // null
-// 
+//
 // console.log(val);
 
 // // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 // // 27. Creating elements
 // // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-// 
+//
 // // how to create elements, add it to DOM, etc.
 // // create li item and add to end of ul collection
-// 
+//
 // // create element
 // const li = document.createElement('li'); // <li></li>
 // // add class
@@ -228,28 +228,28 @@
 // li.appendChild(link); // <li class="collection-item" id="new-item" title="New Item">hello world<a class="delete-item secondary-content"><i class="fa fa-remove"></i></a></li>
 // // append li as child to ul
 // document.querySelector('ul.collection').appendChild(li);
-// 
-// 
+//
+//
 // console.log(li);
 
 // // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 // // 28. Removing & Replace elements
 // // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-// 
+//
 // // replacing elements
 // // h5 to h2
 // // create the new element that we are replacing the old one with (h2)
 // const newHeading = document.createElement('h2'); // <h2></h2>
 // newHeading.id = 'task-title';
 // newHeading.appendChild(document.createTextNode('Task List')); // <h2 id="task-title">Task List</h2>
-// 
+//
 // // get the old heading to be replaced (h5)
 // const oldHeading = document.getElementById('task-title');
 // // we need parent of this element as we are going to use replaceChild()
 // const cardAction = document.querySelector('.card-action');
 // cardAction.replaceChild(newHeading, oldHeading); // The Task List element will now be larger
-// 
-// 
+//
+//
 // // removing elements
 // const lis = document.querySelectorAll('li'); // gets all list items
 // const list = document.querySelector('ul'); // only one ul to get
@@ -257,13 +257,13 @@
 // lis[0].remove(); // removes first li
 // // remove child element
 // list.removeChild(lis[3]);
-// 
+//
 // // classes and attributes
 // const firstLi = document.querySelector('li:nth-child(1)'); // gets first li
 // const link = firstLi.children[0];
-// 
+//
 // let val;
-// 
+//
 // // classes
 // val = link.className; // delete-item secondary-content
 // val = link.classList;
@@ -271,7 +271,7 @@
 // link.classList.add('test'); // adds 'test' to class attribute
 // link.classList.remove('test'); // removes 'test
 // val = link;
-// 
+//
 // // attributes
 // val = link.getAttribute('href'); // #
 // val = link.setAttribute('href', 'https://www.google.com'); // link now points to google
@@ -279,26 +279,26 @@
 // val = link.hasAttribute('title'); // false
 // val = link;
 // link.setAttribute('title', 'gogle');
-// link.removeAttribute('title'); 
-// 
+// link.removeAttribute('title');
+//
 // console.log(val);
 
 // // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 // // 29. Event Listeners & The Event Object
 // // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-// 
+//
 // // we can listen for events on anything in the DOM
 // // we'll add an eventListener on the CLEAR TASKS button
-// 
+//
 // const clearTasksBtn = document.querySelector('.clear-tasks');
 // // clearTasksBtn.addEventListener('click', function(e) {
-// //   console.log('hello world');  
+// //   console.log('hello world');
 // //   e.preventDefault();
 // // });
 // // clicking this button will cause the browser to reload. this is due to the empty href tag
 // // we can stop this behaviour by setting href to '#' or by preventing the default behaviour in the callback function
 // clearTasksBtn.setAttribute('href', '#');
-// 
+//
 // clearTasksBtn.addEventListener('click', onClick);
 // function onClick(e) {
 //   //console.log('clicked');
@@ -309,56 +309,87 @@
 //   // shiftKey tells us if shift was held when the event happened
 //   // timestamp returns time of event
 //   // target represents element that captured event (in this case, the a tag)
-// 
+//
 //   // event target element
 //   val = e.target; // returns element
 //   val = e.target.id; // returns element ID (blank in this case)
 //   val = e.target.className; // returns element class - clear-tasks btn black
 //   val = e.target.classList; // returns DOMTokenList of classes
 //   e.target.innerText = 'hello'; // changes text in button to 'hello'
-// 
+//
 //   val = e.type; // click
 //   val = e.timeStamp; // returns time of event in milliseconds since pageload
 //   val = e.clientX; // returns x coordinate of event relative to window size
 //   val = e.clientY; // returns y coordinate of event relative to window size
 //   val = e.offsetX; // returns x coord relative to element position
 //   val = e.offsetY; // returns y coord relative to element position
-// 
+//
 //   console.log(val);
 // }
-// 
+//
 // console.log(clearTasksBtn);
 
 
-// ~ ~ ~ ~ ~ ~ ~ ~ ~
-// 30. Mouse Events
-// ~ ~ ~ ~ ~ ~ ~ ~ ~
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~
+// // 30. Mouse Events
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~
+//
+// const clearBtn = document.querySelector('.clear-tasks');
+// const card = document.querySelector('.card');
+// const heading = document.querySelector('h5');
+//
+// clearBtn.addEventListener('click', runEvent);
+// clearBtn.addEventListener('dblclick', runEvent);
+// card.addEventListener('mousemove', runEvent);
+// clearBtn.addEventListener('mouseup', runEvent);
+// clearBtn.addEventListener('mousedown', runEvent);
+// card.addEventListener('mouseenter', runEvent);
+// card.addEventListener('mouseleave', runEvent);
+// card.addEventListener('mouseover', runEvent);
+// card.addEventListener('mouseout', runEvent);
+// clearBtn.addEventListener('wheel', runEvent);
+//
+// // event handler
+// function runEvent(e) {
+//   console.log(`EVENT TYPE: ${e.type}`);
+//   heading.innerHTML = `X: ${e.offsetX}\nY: ${e.offsetY}`;
+//   card.style.backgroundColor = `rgb(${e.offsetX},${e.offsetY}, 255)`;
+// }
 
-const clearBtn = document.querySelector('.clear-tasks');
-const card = document.querySelector('.card');
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 31. Keyboard & Input Events
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+const form = document.querySelector('form');
+const taskInput = document.getElementById('task');
 const heading = document.querySelector('h5');
+const select = document.querySelector('select');
 
-clearBtn.addEventListener('click', runEvent);
-clearBtn.addEventListener('dblclick', runEvent);
-card.addEventListener('mousemove', runEvent);
-clearBtn.addEventListener('mouseup', runEvent);
-clearBtn.addEventListener('mousedown', runEvent);
-card.addEventListener('mouseenter', runEvent);
-card.addEventListener('mouseleave', runEvent);
-card.addEventListener('mouseover', runEvent);
-card.addEventListener('mouseout', runEvent);
-clearBtn.addEventListener('wheel', runEvent);
+taskInput.value = '';
 
-// event handler
+form.addEventListener('submit', runEvent);
+
+taskInput.addEventListener('keydown', runEvent);
+// taskInput.addEventListener('keyup', runEvent); // keyup and keydown are fired for all keys
+// taskInput.addEventListener('keypress', runEvent); // keypress is only fired if the key produces a character value (i.e. ignores arrow keys)
+// taskInput.addEventListener('focus', runEvent);
+// taskInput.addEventListener('blur', runEvent); // opposite of focus
+// taskInput.addEventListener('cut', runEvent);
+// taskInput.addEventListener('paste', runEvent);
+// taskInput.addEventListener('copy', runEvent);
+// taskInput.addEventListener('input', runEvent); // catch all input
+
+select.addEventListener('change', runEvent);
+
+
 function runEvent(e) {
-  console.log(`EVENT TYPE: ${e.type}`);
-  heading.innerHTML = `X: ${e.offsetX}\nY: ${e.offsetY}`;
-  card.style.backgroundColor = `rgb(${e.offsetX},${e.offsetY}, 255)`;
+  console.log(`Event Type: ${e.type}`);
+  // console.log(e.target.value);
+  
+  //console.log(`Task Value: ${taskInput.value}`);
+  heading.innerText = e.target.value;
+  // e.preventDefault();
 }
-
-
-
-
 
 
 
