@@ -390,10 +390,10 @@
 //   heading.innerText = e.target.value;
 //   // e.preventDefault();
 // }
-
-// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-// 31. Keyboard & Input Events
-// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// // 32. Event Bubbling & Delegation
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 // // event bubbling - bubbling up of events through the DOM
 // // events bubble up through their parents
@@ -434,18 +434,64 @@
 // // element so event delegation is necessary to fire this event off on all 
 // // delete-item elems.
 
-// another example where event delegation is necessary is when programmatically
-// inserting an element into the DOM after pageload.
-// we'll use a parent element (body) to do this instead of the delete-item class
-document.body.addEventListener('click', deleteItem);
-function deleteItem(e) {
-  if (e.target.parentElement.classList.contains('delete-item')) {
-    console.log('delete item');
-    e.target.parentElements.remove();
+// // another example where event delegation is necessary is when programmatically
+// // inserting an element into the DOM after pageload.
+// // we'll use a parent element (body) to do this instead of the delete-item class
+// document.body.addEventListener('click', deleteItem);
+// function deleteItem(e) {
+//   if (e.target.parentElement.classList.contains('delete-item')) {
+//     console.log('delete item');
+//     e.target.parentElements.remove();
+//   }
+// }
+// // in summary, we placed the event listener on the parent and added a condition
+// // to try and find the target element
+
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// // 33. Local & Session Storage
+// // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// 
+// // window object contains the storage api
+// // can set key value pairs in storage. value must be string.
+// // objects and arrays can be saved, just have to be stringified to store and
+// // parsed when pulling it out.
+// 
+// // local storage will stay unless cleared from browser storage. session only 
+// // lasts as long as the browser session.
+// localStorage.setItem('name', 'Mollie');
+// sessionStorage.setItem('food', 'beans');
+// localStorage.setItem('age', '32');
+// 
+// // remove from storage
+// sessionStorage.removeItem('food');
+// 
+// // clear localStorage
+// localStorage.clear();
+// 
+// // get from storage
+// const name = localStorage.getItem('name'); // Mollie
+// const age = localStorage.getItem('age'); // 32
+//  
+// console.log(name, age);
+
+document.querySelector('form').addEventListener('submit', function(e) {
+  const task = document.getElementById('task').value;
+  
+  let tasks;
+  if (localStorage.getItem('tasks') === null) {
+    tasks = [];
   }
-}
-// in summary, we placed the event listener on the parent and added a condition
-// to try and find the target element
+  else {
+    tasks = localStorage.getItem('tasks');
+    tasks = JSON.parse(tasks); // parse string into array
+  }
+  
+  tasks.push(task);
+  
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  
+  e.preventDefault();
+});
 
 
 
