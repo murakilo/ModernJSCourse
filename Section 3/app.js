@@ -490,8 +490,13 @@ document.querySelector('form').addEventListener('submit', function(e) {
   
   localStorage.setItem('tasks', JSON.stringify(tasks));
   
-  e.preventDefault();
+  e.preventDefault(); 
 });
+
+const tasks = JSON.parse(localStorage.getItem('tasks')); // must convert tasks object from string to array
+tasks.forEach(function(task) { 
+  console.log(task);
+})
 
 
 
