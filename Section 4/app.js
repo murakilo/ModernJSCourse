@@ -17,7 +17,7 @@ function loadEventListeners() {
   // addTask event
   form.addEventListener('submit', addTask);
 
-  console.log('Event listeners loaded.')
+  console.log('Event listeners loaded.');
 }
 
 // add task to Tasks list
