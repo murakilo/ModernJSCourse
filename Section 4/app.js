@@ -3,35 +3,17 @@
 // 34-36 Task List
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
-// define UI vars
+// FIELDS
 const form = document.querySelector('#task-form');
 const taskList = document.querySelector('.collection');
 const clearBtn = document.querySelector('.clear-tasks');
 const filter = document.querySelector('#filter');
 const taskInput = document.querySelector('#task');
 
+// LOAD EVENT LISTENERS
 loadEventListeners();
-function loadEventListeners() {
-  // DOM load event
-  document.addEventListener('DOMContentLoaded', getTasks);
-  // addTask event
-  form.addEventListener('submit', addTask);
-  // remove task event
-  taskList.addEventListener('click', removeTask);
-  // clear task event
-  clearBtn.addEventListener('click', clearTasks);
-  // filter tasks event
-  filter.addEventListener('input', filterTasks);
-}
 
-/** get all tasks from local storage and generate taskList*/
-function getTasks() {
-  let tasks = JSON.parse(checkTasksCookie());
-  tasks.forEach(function(task) {
-    addListItem(task);
-  });
-}
-
+// FUNCTIONS
 /** generates li element inside ul.collection for a task 
  *  @param {string} taskName value of task
 */
@@ -51,26 +33,6 @@ function addListItem(taskName) {
   li.appendChild(link);
   // append list item to ul
   taskList.appendChild(li);
-}
-
-/** check tasks cookie is valid. reset if invalid
- * @returns localStorage 'tasks' object
-*/
-function checkTasksCookie() {
-  let existingTasks = localStorage.getItem('tasks');
-  try {
-    JSON.parse(existingTasks);
-    if (!existingTasks) {
-      console.log('tasks cookie is null. setting to empty array string.');
-      localStorage.setItem('tasks', '[]');
-    }
-  }
-  catch(error) {
-    console.error(error);
-    console.log('existing tasks cookie is invalid. resetting to empty array.');
-    localStorage.setItem('tasks', '[]');
-  }
-  return localStorage.getItem('tasks');
 }
 
 /** add task to Tasks list 
@@ -94,38 +56,37 @@ function addTask(e) {
   e.preventDefault();
 }
 
-/** add task to local storage 
- *  @param {string} inTask task value
- */
-function storeTaskInLocal(inTask) {
-  let tasksArray = JSON.parse(checkTasksCookie());
-  tasksArray.push(inTask); // push inTask into array
-  localStorage.setItem('tasks', JSON.stringify(tasksArray)); // overwrite local tasks with tasksArray
+/** check if task field is empty using regex 
+ * @param {string} inText text to check if empty
+ * @returns {Boolean} returns true if field is empty */
+function checkEmpty(inText) {
+  inText = inText.replace(/^\s+/, '').replace(/\s+$/, ''); // remove all whitespace from inText
+  if (inText === '') {
+    return true;
+  }
+  else {
+    return false;
+  }
 }
 
-/** remove task from task list and local storage 
- *  @param {Element} e element calling event */
-function removeTask(e) {
-  if (e.target.parentElement.classList.contains('delete-item')) {
-    // remove li element
-    e.target.parentElement.parentElement.remove();
-    
-    // remove from local storage
-    let tasks = JSON.parse(checkTasksCookie());
-    const taskDeleteValue = e.target.parentElement.parentElement.textContent;
-    
-    // removes ALL values that match
-    //tasks = tasks.filter(task => task !== taskDeleteValue);
-
-    // removes first value that matches
-    for (let i = 0; i < tasks.length; i++) {
-      if (tasks[i] == taskDeleteValue) {
-        tasks.splice(i, 1);
-        break;
-      }
+/** check tasks cookie is valid. reset if invalid
+ * @returns localStorage 'tasks' object
+*/
+function checkTasksCookie() {
+  let existingTasks = localStorage.getItem('tasks');
+  try {
+    JSON.parse(existingTasks);
+    if (!existingTasks) {
+      console.log('tasks cookie is null. setting to empty array string.');
+      localStorage.setItem('tasks', '[]');
     }
-    localStorage.setItem('tasks', JSON.stringify(tasks));
   }
+  catch(error) {
+    console.error(error);
+    console.log('existing tasks cookie is invalid. resetting to empty array.');
+    localStorage.setItem('tasks', '[]');
+  }
+  return localStorage.getItem('tasks');
 }
 
 /** clears task list and local storage 
@@ -160,15 +121,57 @@ function filterTasks(e) {
   });
 }
 
-/** check if task field is empty using regex 
- * @param {string} inText text to check if empty
- * @returns {Boolean} returns true if field is empty */
-function checkEmpty(inText) {
-  inText = inText.replace(/^\s+/, '').replace(/\s+$/, ''); // remove all whitespace from inText
-  if (inText === '') {
-    return true;
+/** get all tasks from local storage and generate taskList*/
+function getTasks() {
+  let tasks = JSON.parse(checkTasksCookie());
+  tasks.forEach(function(task) {
+    addListItem(task);
+  });
+}
+
+function loadEventListeners() {
+  // DOM load event
+  document.addEventListener('DOMContentLoaded', getTasks);
+  // addTask event
+  form.addEventListener('submit', addTask);
+  // remove task event
+  taskList.addEventListener('click', removeTask);
+  // clear task event
+  clearBtn.addEventListener('click', clearTasks);
+  // filter tasks event
+  filter.addEventListener('input', filterTasks);
+}
+
+/** remove task from task list and local storage 
+ *  @param {Element} e element calling event */
+function removeTask(e) {
+  if (e.target.parentElement.classList.contains('delete-item')) {
+    // remove li element
+    e.target.parentElement.parentElement.remove();
+    
+    // remove from local storage
+    let tasks = JSON.parse(checkTasksCookie());
+    const taskDeleteValue = e.target.parentElement.parentElement.textContent;
+    
+    // removes ALL values that match
+    //tasks = tasks.filter(task => task !== taskDeleteValue);
+
+    // removes first value that matches
+    for (let i = 0; i < tasks.length; i++) {
+      if (tasks[i] == taskDeleteValue) {
+        tasks.splice(i, 1);
+        break;
+      }
+    }
+    localStorage.setItem('tasks', JSON.stringify(tasks));
   }
-  else {
-    return false;
-  }
+}
+
+/** add task to local storage 
+ *  @param {string} inTask task value
+ */
+function storeTaskInLocal(inTask) {
+  let tasksArray = JSON.parse(checkTasksCookie());
+  tasksArray.push(inTask); // push inTask into array
+  localStorage.setItem('tasks', JSON.stringify(tasksArray)); // overwrite local tasks with tasksArray
 }
