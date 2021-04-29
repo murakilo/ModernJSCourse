@@ -2,11 +2,20 @@ const card = document.querySelector('.card');
 const form = document.getElementById('loan-form');
 
 // Listen for submit
-document.getElementById('loan-form').addEventListener('submit', calculateResults);
+document.getElementById('loan-form').addEventListener('submit', async function(e){
+  // hide results
+  document.getElementById('results').style.display = 'none';
+  // show loader
+  document.getElementById('loading').style.display = 'block';
+
+  await setTimeout(calculateResults, 1000);
+
+  e.preventDefault();
+});
 
 // Calculate results
-function calculateResults(e) {
-  e.preventDefault();
+function calculateResults() {
+  //e.preventDefault();
 
   // UI variables
   const amount = document.getElementById('amount');
@@ -28,9 +37,13 @@ function calculateResults(e) {
     monthlyPmnt.value = monthly.toFixed(2);
     totalPmnt.value = ( monthly * totalMonths ).toFixed(2);
     totalIntrst.value = ( ( monthly * totalMonths ) - principal ).toFixed(2);
+
+    document.getElementById('results').style.display = 'block';
   } else {
     showError('Error: please check inputs.')
   }
+
+  document.getElementById('loading').style.display = 'none';
 }
 
 async function showError(error) {
