@@ -81,7 +81,7 @@ guessBtn.addEventListener('click', function() {
     guessesLeft -= 1;
     if (guessesLeft === 0) {
       losses = addLoss(losses);
-      gameOver(false, `you lost. the correct answer was ${winningNum}.<br>that's numberwang!`);
+      gameOver(false, `you lost. the correct answer was ${winningNum}.<br>that's numberWang!`);
     }
     else {
       guessInput.value = '';
