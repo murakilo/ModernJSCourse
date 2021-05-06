@@ -9,51 +9,71 @@
 */
 
 // game values
-let min = -7, max = 999, winningNum = 2, guessesLeft = 3;
+let min = 1, max = 10, guessesLeft = 3;
+let winningNum = getRandomNum(min, max);
+
 
 // ui elements
 const game = document.querySelector('#game');
-const minNum = document.querySelector('.min-num');
-const maxNum = document.querySelector('.max-num');
-const guessBtn = document.querySelector('#guess-btn');
-const guessInput = document.querySelector('#guess-input');
+const minNum = document.querySelector('.minNum');
+const maxNum = document.querySelector('.maxNum');
+const guessBtn = document.querySelector('#guessBtn');
+const guessInput = document.querySelector('#guessInput');
 const message = document.querySelector('.message');
 
 // set number boundaries
 minNum.textContent = min;
 maxNum.textContent = max;
 
+// play again event listener
+game.addEventListener('mousedown', function(e) {
+  if (e.target.className.includes('playAgain')) {
+    window.location.reload();
+  }
+})
+
 // listen for guess input
 guessBtn.addEventListener('click', function() {  
   let guess = parseInt(guessInput.value);
-  console.log(guess);
 
   // validate input
   // check not blank, or < min and > max
   if (isNaN(guess) || guess < min || guess > max) {
     setMessage(`invalid input. please enter a number between ${min} and ${max}.`, 'red');
   }
-
   // win case
   else if (guess === winningNum) {
-    guessInput.style.borderColor = 'green';
-    guessBtn.disabled = true;
-    guessBtn.style.borderColor = 'green';
-    guessBtn.value = 'YOU WIN';
-
-    setMessage(`${guess} is correct!`, 'green');
+    gameOver(true, `${guess} is correct!`);
   } 
-  else if (guessesLeft > 1) { // lose case
+  else { // lose case
     guessesLeft -= 1;
-    setMessage(`${guess} is incorrect. please try again. you have ${guessesLeft} ${guessesLeft > 1 ? 'guesses' : 'guess'} left.`);
+    if (guessesLeft === 0) {      
+      gameOver(false, `you lost. the correct answer was ${winningNum}.<br>that's numberwang!`);
+    }
+    else {
+      guessInput.value = '';
+      setMessage(`${guess} is incorrect. please try again. you have ${guessesLeft} ${guessesLeft > 1 ? 'guesses' : 'guess'} left.`);
+    }
   }
-  else {
-    setMessage(`you lost. that's numberwang`, 'red');
-  }
-})
+});
+
+function gameOver(win, msg) {
+  let color = win ? 'green' : 'red';
+  guessInput.style.borderColor = color;
+  guessBtn.style.color = color;
+  setMessage(msg, color);
+
+  // play again?
+  guessBtn.className += ' playAgain';
+  guessBtn.value = 'PLAY AGAIN'
+}
+
+function getRandomNum(min, max) {
+  var winNum = Math.random() * (max-min + 1) + min;
+  return Math.floor(winNum);
+}
 
 function setMessage(msg, color) {
-  message.textContent = msg;
+  message.innerHTML = msg;
   message.style.color = color;
-  console.log(message);
 }
