@@ -42,9 +42,6 @@ else {
   lossSpan.textContent = losses;
 }
 
-console.log(localStorage.getItem('numberWangWins'));
-console.log(localStorage.getItem('numberWangLosses'));
-
 // play again event listener
 game.addEventListener('mousedown', function(e) {
   if (e.target.className.includes('playAgain')) {
@@ -53,13 +50,15 @@ game.addEventListener('mousedown', function(e) {
 })
 
 // reset game event listener
-scoreCont.addEventListener('click', function() {
+scoreCont.addEventListener('click', function(e) {
+  if (e.target.id === 'resetBtn') {
   localStorage.setItem('numberWangWins', 0);
   localStorage.setItem('numberWangLosses', 0);
   wins = 0;
   losses = 0;
   winSpan.textContent = 0;
   lossSpan.textContent = 0;
+  }
 });
 
 // listen for guess input
