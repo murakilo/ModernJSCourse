@@ -52,12 +52,12 @@ game.addEventListener('mousedown', function(e) {
 // reset game event listener
 scoreCont.addEventListener('click', function(e) {
   if (e.target.id === 'resetBtn') {
-  localStorage.setItem('numberWangWins', 0);
-  localStorage.setItem('numberWangLosses', 0);
-  wins = 0;
-  losses = 0;
-  winSpan.textContent = 0;
-  lossSpan.textContent = 0;
+    localStorage.setItem('numberWangWins', 0);
+    localStorage.setItem('numberWangLosses', 0);
+    wins = 0;
+    losses = 0;
+    winSpan.textContent = 0;
+    lossSpan.textContent = 0;
   }
 });
 
